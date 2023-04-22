@@ -1,0 +1,15 @@
+.passion {
+    min-height: 280px;
+    padding: 90px 0;
+    background: linear-gradient(to right, rgba(0,0,0, .7), rgba(0,0,0, .7)), url('../img/bg/passion_bg.jpeg')center center/cover no-repeat;
+    background-attachment: fixed;
+    &__wrapper {
+        display: flex;
+        height: 50px;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    &__img {
+        margin: 0 10px;
+    }
+}

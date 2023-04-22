@@ -1,0 +1,30 @@
+.goals {
+    min-height: 872px;
+    padding: 120px 0;
+    background-color: $color-main-fog;
+    &__wrapper {
+        display: flex;
+        min-height: 632px;
+    }
+    &__item {
+        width: 50%;
+        &_bg {
+            background: url('../img/bg/goals.jpg') center center/cover no-repeat;
+        }
+        &_descr {
+            padding-top: 116px;
+            width: 420px;
+            margin-left: 64px;
+        }
+    }
+    &__title {
+        margin-bottom: 0;
+    }
+    &__p {
+        margin-top: 30px;
+        margin-bottom: 0;
+        &_first {
+            margin-top: 15px;
+        }
+    }
+}

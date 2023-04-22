@@ -35,11 +35,25 @@
             font-size: 20px;
             line-height: 36px;
         }
+        &_passion {
+            font-size: 26px;
+            line-height: 50px;
+            color: $color-main-darken;
+        }
     }
-    &_big {
+    &__big {
         font-weight: 700;
         font-size: 30px;
         line-height: 30px;
+        &_goals {
+            color: $color-night;
+            line-height: 46px;
+            text-align: left;
+        }
+        &_services {
+            line-height: 46px;
+            text-align: left;
+        }
     }
 }
 
@@ -65,11 +79,18 @@
     line-height: 29px;
     color: $color-gray;
     text-align: center;
-    &_team-director {
+    &_title{
         color: $color-main;
         text-transform: capitalize;
     }
-    &_team-item {
+    &_justify {
         text-align: justify;
+    }
+    &_left {
+        text-align: left;
+    }
+    &_serv {
+        text-align: left;
+        color: $color-main;
     }
 }
