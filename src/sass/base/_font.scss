@@ -1,0 +1,75 @@
+.font {
+    font-family: "Hans Kendrick", 'Roboto','Helvetica Neue',sans-serif;
+    font-weight: 500;
+    color: $color-main;
+    text-align: center;
+    &_menu {
+        font-size: 12px;
+        line-height: 22px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: $color-main-dark;
+        text-decoration: none;
+        text-align: left;
+    }
+    &__title {
+        font-size: 15px;
+        line-height: 32px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        &_advantage {
+            color: $color-gray-dark;
+            letter-spacing: normal;
+        }
+        &_team {
+            color: $color-gray-light;
+        }
+    }
+    &__descr {
+        font-weight: 400;
+        &_about {
+            font-size: 35px;
+            line-height: 52px;
+        }
+        &_team {
+            font-size: 20px;
+            line-height: 36px;
+        }
+    }
+    &_big {
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 30px;
+    }
+}
+
+.font-home {
+    font-family: "Montserrat",'Helvetica Neue',sans-serif;
+    font-weight: 500;
+    color: $color-main;
+    &_title {
+        font-size: 80px;
+        line-height: 80px;
+    }
+    &_subtitle {
+        font-size: 45px;
+        line-height: 45px;
+        font-weight: 400;
+    }
+}
+
+.font-alt {
+    font-family: "Lora", 'Roboto','Helvetica Neue',sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 29px;
+    color: $color-gray;
+    text-align: center;
+    &_team-director {
+        color: $color-main;
+        text-transform: capitalize;
+    }
+    &_team-item {
+        text-align: justify;
+    }
+}

@@ -1,0 +1,36 @@
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    &_header {
+        margin: 0;
+        padding-left: 0;
+    }
+    &__item {
+        padding: 8px 20px 0px 20px;
+        cursor: pointer;
+    }
+    &__link {
+        position: relative;
+        display: block;
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0%;
+            top: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 2px;
+            background-color: $color-main-dark;;
+            transition: 0.4s all;
+        }
+        &:hover {
+            color: $color-main-dark;
+            &::after {
+                width: 98%;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,12 @@
+.about {
+    min-height: 497px;
+    padding: 120px 0;
+    background-color: rgb(19, 29, 71);
+    &__title {
+        margin-bottom: 0;
+    }
+    &__descr {
+        margin-top: 40px;
+        margin-bottom: 0px;
+    }
+}

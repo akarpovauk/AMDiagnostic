@@ -1,0 +1,32 @@
+.team {
+    min-height: 830px;
+    padding: 120px 0;
+    background-color: $color-sky;
+    &__title {
+        margin-bottom: 0;
+    }
+    &__descr {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-around;
+        min-height: 707px;
+        margin-top: 50px;
+    }
+    &__item {
+        padding: 0 25px;
+    }
+    &__photo {
+        display: block;
+        width: 520px;
+    }
+    &__management {
+        margin-top: 36px;
+    }
+    &__cv {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}

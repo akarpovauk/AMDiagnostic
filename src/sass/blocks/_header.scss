@@ -1,0 +1,11 @@
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 93px;
+    color: $color-main;
+    &_main {
+        position: absolute;
+    }
+}

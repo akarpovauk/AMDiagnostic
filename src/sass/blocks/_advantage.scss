@@ -1,0 +1,29 @@
+.advantage {
+    min-height: 358px;
+    background-color: $color-main-dark;
+    &__wrapper {
+        display: flex;
+        min-height: 358px;
+    }
+    &__item {
+        padding: 64px 43px;
+        border: $color-morning dashed 0.5px;
+        &_dark {
+            background-color: $color-main-darkest;
+        }
+    }
+    &__logo {
+        display: block;
+        width: 50px;
+        margin: 0 auto;
+    }
+    &__title {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    &__descr {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+}

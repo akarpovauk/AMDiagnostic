@@ -1,0 +1,15 @@
+.home {
+    display: flex;
+    align-items: center;
+    height: 90vh;
+    background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg.jpg');
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    &__wrapper {
+        padding: 90px 0;
+    }
+    &__subtitle {
+        margin-top: 10px;
+    }
+}

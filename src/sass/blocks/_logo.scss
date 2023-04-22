@@ -1,0 +1,14 @@
+.logo {
+    width: 250px;
+    height: 63px;
+    cursor: pointer;
+    &_header {
+        position: absolute;
+        top: 18px;
+        left: 30px;
+    }
+    &__img {
+        max-width: 100%;
+    }
+
+}
