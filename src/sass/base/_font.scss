@@ -17,12 +17,15 @@
         line-height: 32px;
         text-transform: uppercase;
         letter-spacing: 3px;
-        &_advantage {
+        &_color {
             color: $color-gray-dark;
             letter-spacing: normal;
         }
         &_team {
             color: $color-gray-light;
+        }
+        &_btn {
+            line-height: 28px;
         }
     }
     &__descr {
@@ -39,6 +42,16 @@
             font-size: 26px;
             line-height: 50px;
             color: $color-main-darken;
+        }
+        &_contact {
+            font-size: 20px;
+            line-height: 36px;
+            color: $color-gray-dark;
+        }
+        &_copyright {
+            font-size: 12px;
+            line-height: 14px;
+            color: $color-gray;
         }
     }
     &__big {
@@ -93,4 +106,8 @@
         text-align: left;
         color: $color-main;
     }
+    &_address {
+        color: $color-main-darkest;
+    }
+
 }

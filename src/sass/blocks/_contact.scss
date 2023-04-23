@@ -1,0 +1,11 @@
+.contact {
+    padding: 90px 0;
+    background-color: $color-main-darkest;
+    &__title {
+        margin-bottom: 0;
+    }
+    &__descr {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}
