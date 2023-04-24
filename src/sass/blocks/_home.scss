@@ -1,7 +1,7 @@
 .home {
     display: flex;
-    align-items: center;
     height: 90vh;
+    align-items: center;
     background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg.jpg');
     background-position: 0 0;
     background-size: cover;
