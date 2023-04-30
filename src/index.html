@@ -66,7 +66,7 @@
     <section class="home" id="home">
         <div class="container">
             <div class="home__wrapper">
-                <h1 class="font-home font-home_title">Diagnostic Services</h1>
+                <h1 class="home__title font-home font-home_title">Diagnostic Services</h1>
                 <h2 class ="home__subtitle font-home font-home_subtitle">Tailored to suit your needs</h2>
             </div>
         </div>
@@ -84,21 +84,21 @@
     <section class="advantage">
         <div class="advantage__wrapper">
             <div class="advantage__item">
-                <img src="icons/heart.png" alt="heart" class="advantage__logo">
+                <img src="icons/heart.png" alt="heart" class="icon">
                 <h3 class="advantage__title font font__title font__title_color">The highest quality</h3>
                 <p class="advantage__descr font-alt">
                     We provide the highest quality possible. Putting quality and integrity first enables the healthcare provider to provide the very best customer experience and outcomes.
                 </p>
             </div>
             <div class="advantage__item advantage__item_dark">
-                <img src="icons/heart.png" alt="heart" class="advantage__logo">
+                <img src="icons/heart.png" alt="heart" class="icon">
                 <h3 class="advantage__title font font__title font__title_color">Experienced radiographers</h3>
                 <p class="advantage__descr font-alt">
                     Lead by a team of world-class radiographers, for radiographers. We communicate clearly and align our expectations upfront for every project as every project is unique.
                 </p>
             </div>
             <div class="advantage__item">
-                <img src="icons/heart.png" alt="heart" class="advantage__logo">
+                <img src="icons/heart.png" alt="heart" class="icon">
                 <h3 class="advantage__title font font__title font__title_color">Care for the patient</h3>
                 <p class="advantage__descr font-alt">
                     Excellent customer experience is something we strive for. The most rewarding outcome is for the patient to receive the care he or she needs and deserves.
@@ -114,26 +114,26 @@
                 Started by radiographers with a combined 40+ years of extensive industry experience and care for the patient
             </p>
             <div class="team__wrapper">
-                <div class="team__item">
+                <article class="team__item">
                     <img src="img/adel.jpeg" alt="Adel Sonnokrot's photo" class="team__photo">
-                    <div class="team__management font font__big">Adel Sonnokrot</div>
-                    <div class="font-alt font-alt_title">
+                    <h4 class="team__management font font__big">Adel Sonnokrot</h4>
+                    <h5 class="team__position font-alt font-alt_title">
                         Director Of Clinical Services
-                    </div>
+                    </h5>
                     <p class="team__cv font-alt font-alt_justify">
                         Adel, registered diagnostic radiographer since 2001 in CT and MR, has worked many years as CQC registered manager and engineered the entire clinical setups of multiple healthcare providers across the UK&I. With his extensive background in the industry, he is a great fit for in the management team as overall responsible of AMDS' clinical setup.  
                     </p>
-                </div>
-                <div class="team__item">
+                </article>
+                <article class="team__item">
                     <img src="img/mark.jpeg" alt="Mark Pendleton's photo" class="team__photo">
-                    <div class="team__management font font__big">Mark Pendleton</div>
-                    <div class="font-alt font-alt_title">
+                    <h4 class="team__management font font__big">Mark Pendleton</h4>
+                    <h5 class="team__position font-alt font-alt_title">
                         Director of Staffing Operations
-                    </div>
+                    </h5>
                     <p class="team__cv font-alt font-alt_justify">
                         Mark is active as registered diagnostic radiographer CT and MRI since 2002. Over the years he has been in clinical management and educational roles within a variety of healthcare organizations. Mark has also supported the largest private healthcare providers to the NHS set-up and support staffing operations for a wide variety of trusts. At AMDS he ensures that our staffing operations service provided is safe, effective, caring, responsive and well led.
                     </p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -200,23 +200,26 @@
 
     <section class="contact" id="contact">
         <div class="container">
-            <h3 class="contact__title font font__tytle font__title_color">Contact</h3>
+
+            <h3 class="contact__title font font__contact">Contact</h3>
             <p class="contact__descr font font__descr font__descr_contact">
                 Reach out to us and we will get back to you at the earliest
             </p>
-            <form class="feed-form font font__descr" action="#">
+
+            <form  id="contact-form"  class="feed-form font font__descr font__descr_input" action="#">
+                
                 <div class="feed-form__column">
-                    <input name="name" required placeholder="Name" type="text" class="feed-form__input">
-                    <input name="email" required placeholder="E-mail" type="email" class="feed-form__input">
-                    <input name="subject" required placeholder="Subject" type="text" class="feed-form__input">
+                    <input name="name" placeholder="Name" type="text" class="feed-form__input">
+                    <input name="email" placeholder="E-mail" type="email" class="feed-form__input">
+                    <input name="subject" placeholder="Subject" type="text" class="feed-form__input">
                 </div>
+
                 <div class="feed-form__column">
                     <textarea name="text" placeholder="Message" class="feed-form__input feed-form__input_textarea"></textarea>
 
-                    <button class="button feed-form__button font font__title font__title_btn">submit</button>
+                    <button id="submit" class="button button_big feed-form__btn font font__title font__title_btn">submit</button>
                 </div>
 
-              
             </form>
 
         </div>
@@ -225,21 +228,21 @@
     <footer class="footer">
         <div class="container">
 
-            <div class="footer__address">
-                <div class="footer__address-item">
-                    <div class="font font__title">ADDRESS</div>
-                    <div class="font-alt font-alt_address">
+            <div class="footer__wrapper">
+                <div class="footer__item">
+                    <h3 class="footer__title font font__title">ADDRESS</h3>
+                    <address class="footer__address font-alt font-alt_address">
                         48 Mary Street, Stanley, England, DH9 0NQ
-                    </div>
+                    </address>
                 </div>
-                <div class="footer__address-item">
-                    <div class="font font__title">EMAIL</div>
+                <div class="footer__item">
+                    <h3 class="footer__title font font__title">EMAIL</h3>
                     <div class="footer__inner">
                         <a href="EMAIL" class="footer__link font-alt font-alt_address">info@amdiagnostic.co.uk</a>
                     </div>
                 </div>
-                <div class="footer__address-item">
-                    <div class="font font__title">PHONE</div>
+                <div class="footer__item">
+                    <h3 class="footer__title font font__title">PHONE</h3>
                     <div class="footer__inner">
                         <a href="tel:03300533736" class="footer__link font-alt font-alt_address">
                             +0330 053 3736
@@ -263,6 +266,25 @@
         </div>
     </footer>
 
-    <script  src="js/script.js"></script>
+    <div class="overlay">
+        <div class="modal" id="thanks">
+            <img src="icons/heart.png" alt="heart" class="icon icon_modal">
+
+            <h3 class="modal__title font font__tytle font__title_modal">
+                Thank You!
+            </h3>
+            <p class="modal__descr font font__descr font__descr_contact ">
+                Your message has been sent. Thanks!
+            </p>
+            <button id="close" class="button button_small modal__btn font font__title font__title_btn-modal">ok</button>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>
