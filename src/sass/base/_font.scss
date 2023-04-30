@@ -27,6 +27,17 @@
         &_btn {
             line-height: 28px;
         }
+        &_btn-modal {
+            line-height: 20px;
+        }
+        &_modal {
+            text-transform: none;
+            color: $color-gray-dark;
+        }
+    }
+    &__contact {
+        font-size: 28px;
+        color: $color-gray-dark;
     }
     &__descr {
         font-weight: 400;
@@ -47,6 +58,9 @@
             font-size: 20px;
             line-height: 36px;
             color: $color-gray-dark;
+        }
+        &_input {
+            font-size: 16px;
         }
         &_copyright {
             font-size: 12px;
