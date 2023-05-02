@@ -4,11 +4,9 @@ $(document).ready(function() {
         $('.overlay, #thanks').fadeOut('slow');
     });
 
-    
-
-    $('#submit').on('click', function() {
+/*     $('#submit').on('click', function() {
         $('.overlay, #thanks').fadeIn('slow');
-    });
+    }); */
 
     function validateForms(form) {
         $(form).validate({
@@ -46,5 +44,28 @@ $(document).ready(function() {
     };
 
     validateForms('#contact-form');
+
+    $('#contact-form').submit(function(e) {
+        e.preventDefault();
+
+        if (!$(this).valid()) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "mailer/smart.php",
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find("input").val("");
+            $(this).find("textarea").val("");
+
+            $('.overlay, #thanks').fadeIn('slow');
+
+
+            $("form").trigger("reset");
+        });
+        return false;
+    });
 
 });
