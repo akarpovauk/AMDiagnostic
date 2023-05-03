@@ -68,6 +68,17 @@
 @media (max-width: 767px) {
     /* browser width 576px */
     /* hamburger */
+    .header {
+        &_alt {
+            display: none;
+        }
+        &__wrapper {
+            &_alt {
+                display: none;
+                height: 0;
+            }
+        }
+    }
 
     .hamburger {
         position: absolute;

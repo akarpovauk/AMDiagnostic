@@ -65,7 +65,6 @@ $(document).ready(function() {
     });
 
     //  pageup
-
     $(window).scroll(function() {
         if ($(this).scrollTop() > 300) {
             $('.pageup').fadeIn();
@@ -73,4 +72,13 @@ $(document).ready(function() {
             $('.pageup').fadeOut();;
         }
     });
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 700) {
+            $('.header.header_alt').fadeIn();
+        } else {
+            $('.header_alt').fadeOut();;
+        }
+    });
+
 });
