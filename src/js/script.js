@@ -1,42 +1,76 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector('.menu'),
-          menuItem = document.querySelectorAll('.menu__item'),
-          hamburger = document.querySelector('.hamburger');
+$(document).ready(function() {
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('hamburger_active');
-        menu.classList.toggle('menu_active');
+    $('#close').on('click', function() {
+        $('.overlay, #thanks').fadeOut('slow');
     });
 
-    menuItem.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.toggle('hamburger_active');
-            menu.classList.toggle('menu_active');
-        })
-    })
-
-/*     document.addEventListener("submit", function (event) {
-        event.preventDefault();
-       
-        if (!validateForm(form)) {
-          return;
-        }
-       
-        fetch("mailer/smart.php", {
-          method: "POST",
-          body: new FormData(event.target),
-        })
-          .then(function (response) {
-            if (response.ok) {
-              return response.json();
+    function validateForms(form) {
+        $(form).validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                subject: {
+                    required: true
+                },
+                text: "required"
+            },
+            messages: {
+                name: {
+                    required: "Please specify your name",
+                    minlength: jQuery.validator.format("At least {0} characters required")
+                },
+                email: {
+                  required: "We need your email address to contact you",
+                  email: "Please enter a valid email address"
+                },
+                subject: {
+                    required: "This field is required"
+                },
+                text: {
+                    required: "Please wright your message here"
+                }
             }
-            return Promise.reject(response);
-          })
-          .then(function (data) {
-            console.log(data);
-          })
-          .catch(function (error) {
-            console.warn(error);
-          });
-      }); */
-})
+        });
+    };
+
+    validateForms('#contact-form');
+
+    $('#contact-form').submit(function(e) {
+        e.preventDefault();
+
+        if (!$(this).valid()) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "mailer/smart.php",
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find("input").val("");
+            $(this).find("textarea").val("");
+
+            $('.overlay, #thanks').fadeIn('slow');
+
+
+            $("form").trigger("reset");
+        });
+        return false;
+    });
+
+    //  pageup
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $('.pageup').fadeIn();
+        } else {
+            $('.pageup').fadeOut();;
+        }
+    });
+});

@@ -1,0 +1,15 @@
+.pageup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 0px;
+    height: 0px;
+    background-color: $color-up;
+    border-radius: 100%;
+    mix-blend-mode: difference;
+    opacity: 0.7;
+    &__svg {
+        width: 100%;
+    }
+}

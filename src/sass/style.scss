@@ -1,3 +1,4 @@
+@import 'base/general';
 @import 'base/variables';
 @import 'base/container';
 @import 'base/font';
@@ -20,4 +21,6 @@
 @import 'blocks/footer';
 @import 'blocks/form';
 @import 'blocks/modal';
+@import "blocks/pageup";
 @import 'blocks/media';
+
