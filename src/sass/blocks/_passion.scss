@@ -5,11 +5,27 @@
     background-attachment: fixed;
     &__wrapper {
         display: flex;
-        height: 50px;
+        height: 70px;
         justify-content: center;
         margin-bottom: 0;
     }
+    span {
+        display: flex;
+        width: 90px;
+        justify-content: center;
+        align-items: center;
+    }
     &__img {
-        margin: 0 10px;
+        // margin: 0 10px;
+        height: 50px;
+        &_animated {
+            animation-name: heartbeat;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
     }
 }

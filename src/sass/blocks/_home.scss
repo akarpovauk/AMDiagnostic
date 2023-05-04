@@ -1,5 +1,6 @@
 .home {
     display: flex;
+    min-height: 440px;
     height: 95vh;
     align-items: center;
     background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg.jpg');
