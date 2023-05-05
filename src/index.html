@@ -22,6 +22,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/fonts.css">
 
+    <link rel="stylesheet" href="css/animate.css">
+
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 
@@ -105,8 +107,12 @@
     <section class="home" id="home">
         <div class="container">
             <div class="home__wrapper">
-                <h1 class="home__title font-home font-home_title">Diagnostic Services</h1>
-                <h2 class ="home__subtitle font-home font-home_subtitle">Tailored to suit your needs</h2>
+                <h1 class="home__title font-home font-home_title">
+                    Diagnostic Services
+                </h1>
+                <h2 class ="home__subtitle font-home font-home_subtitle wow animate__animated animate__zoomIn" data-wow-duration="2s" data-wow-delay="0.5s" >
+                    Tailored to suit your needs
+                </h2>
             </div>
         </div>
     </section>
@@ -122,23 +128,27 @@
 
     <section class="advantage">
         <div class="advantage__wrapper">
-            <div class="advantage__item">
+            <div class="advantage__item wow animate__animated animate__zoomIn"  data-wow-duration="2s" data-wow-delay="1s">
                 <img src="icons/heart.png" alt="heart" class="icon">
                 <h3 class="advantage__title font font__title font__title_color">The highest quality</h3>
                 <p class="advantage__descr font-alt">
                     We provide the highest quality possible. Putting quality and integrity first enables the healthcare provider to provide the very best customer experience and outcomes.
                 </p>
             </div>
-            <div class="advantage__item advantage__item_dark">
+            <div class="advantage__item advantage__item_dark wow animate__animated animate__zoomIn" data-wow-duration="2s" data-wow-delay="0.5s">
                 <img src="icons/heart.png" alt="heart" class="icon">
-                <h3 class="advantage__title font font__title font__title_color">Experienced radiographers</h3>
+                <h3 class="advantage__title font font__title font__title_color">
+                    Experienced radiographers
+                </h3>
                 <p class="advantage__descr font-alt">
                     Lead by a team of world-class radiographers, for radiographers. We communicate clearly and align our expectations upfront for every project as every project is unique.
                 </p>
             </div>
-            <div class="advantage__item">
+            <div class="advantage__item wow animate__animated animate__zoomIn" data-wow-duration="2s" data-wow-delay="1s">
                 <img src="icons/heart.png" alt="heart" class="icon">
-                <h3 class="advantage__title font font__title font__title_color">Care for the patient</h3>
+                <h3 class="advantage__title font font__title font__title_color">Care for the patient
+
+                </h3>
                 <p class="advantage__descr font-alt">
                     Excellent customer experience is something we strive for. The most rewarding outcome is for the patient to receive the care he or she needs and deserves.
                 </p>
@@ -177,16 +187,16 @@
         </div>
     </section>
 
-    <section class="passion">
+    <article class="passion">
         <div class="container">
-            <p class="passion__wrapper font font__descr font__descr_passion">
+            <h5 class="passion__wrapper font font__descr font__descr_passion">
                 We <span>
                     <img src="icons/heart_passion.webp" alt="heart icon" class="passion__img passion__img_animated"> 
                 </span>
                 what we do and we do it with a great deal of passion
-            </p>
+            </h5>
         </div>
-    </section>
+    </article>
 
     <section class="goals" id="goals">
         <div class="goals__wrapper">
@@ -326,9 +336,11 @@
     </a>
 
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
     <script src="js/hamburger.js"></script>
     <script src="js/script.js"></script>
 

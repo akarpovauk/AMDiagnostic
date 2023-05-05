@@ -74,11 +74,13 @@ $(document).ready(function() {
     });
 
     $(window).scroll(function() {
-        if ($(this).scrollTop() > 700) {
+        if ($(this).scrollTop() > 400) {
             $('.header.header_alt').fadeIn();
         } else {
             $('.header_alt').fadeOut();;
         }
     });
+
+    new WOW().init();
 
 });
