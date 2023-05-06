@@ -74,7 +74,7 @@ $(document).ready(function() {
     });
 
     $(window).scroll(function() {
-        if ($(this).scrollTop() > 400) {
+        if ($(this).scrollTop() > 500) {
             $('.header.header_alt').fadeIn();
         } else {
             $('.header_alt').fadeOut();;
