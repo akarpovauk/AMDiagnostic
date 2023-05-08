@@ -1,3 +1,32 @@
 .hamburger {
     display: none;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height:18px;
+    span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        margin-top: 4px;
+        background-color: rgb(245, 245, 245);
+        transition: 0.5s all;
+    }
+    &_active {
+        span {
+            margin-top: -2px;
+            &:nth-child(1) {
+                transform: translateY(12px) rotate(-45deg);
+            }
+            &:nth-child(2) {
+                display: none;
+            }
+            &:nth-child(3) {
+                transform: translateY(12px) rotate(45deg);
+            }
+        }
+
+    }
 }
