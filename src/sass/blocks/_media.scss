@@ -1,15 +1,64 @@
 @media (max-width: 1200px) {
     /* browser width 992px */
+    .container {
+        max-width: 960px;
+    }
+
+    .logo {
+        width: 200px;
+        &_header {
+            top: 20px;
+            left: 20px;
+        }
+    }
+
+    .menu {
+        &_header {
+            margin-left: 20px;
+        }
+        &__item {
+            padding: 6px 12px 0 12px;
+        }
+    }
+
+    .home {
+        &__wrapper {
+            padding-left: 20px;
+        }
+    }
+
+    .font-home {
+        &_title {
+            font-size: 70px;
+            line-height: 70px;
+        }
+    }
+
+    .advantage {
+        &__item {
+            padding: 50px 25px;
+        }
+    }
 }
 
 @media (max-width: 991px) {
     /* browser width 768px */
     /* elements should not be in 1 row */
+    .container {
+        max-width: 720px;
+    }
+
     .logo {
         cursor: default;
+        &_header {
+            top: 26px;
+        }
     }
 
     .menu {
+        &_header {
+            margin-left: 200px;
+        }
         &__item {
             cursor: default;
         }
@@ -27,6 +76,48 @@
             }
         }
 
+    }
+
+    .font-home {
+        &_title {
+            font-size: 60px;
+            line-height: 80px;
+        }
+        &_subtitle {
+            font-size: 40px;
+            line-height: 40px;
+        }
+    }
+
+    .font {
+        &__descr {
+            &_about {
+                font-size: 27px;
+            }
+        }
+    }
+
+    .font-alt {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .about {
+        min-height: 400px;
+        padding: 100px 0;
+    }
+
+    .advantage {
+        min-height: 200px;
+        &__item {
+            padding: 40px 9px;
+        }
+        &__title {
+            margin-top: 15px;
+        }
+        &__descr {
+            margin-top: 0;
+        }
     }
     
     #submit, #close {
@@ -68,6 +159,16 @@
 @media (max-width: 767px) {
     /* browser width 576px */
     /* hamburger */
+    .container {
+        max-width: 540px;
+    }
+
+    .logo {
+        &_header {
+            top: 20px;
+        }
+    }
+
     .header {
         &_alt {
             display: none;
@@ -116,27 +217,119 @@
             font-weight: 400;
             line-height: 50px;
         }
+        &__title {
+            font-size: 16px;
+        }
+    }
+
+    .font-alt {
+        font-size: 18px;
+        line-height: 32px;
+    }
+
+    .font-home {
+        &_title {
+            font-size: 45px;
+            line-height: 60px;
+        }
+        &_subtitle {
+            font-size: 28px;
+            line-height: 40px;
+        }
     }
 
     .pageup {
         width: 40px;
         height: 40px;
     }
+
+    .advantage {
+        &__wrapper {
+            flex-wrap: wrap;
+        }
+        &__item {
+            padding: 80px 60px;
+        }
+        &__title {
+            margin-top: 30px;
+        }
+        &__descr {
+            margin-top: 10px;
+        }
+    }
 }
 
 @media (max-width: 575px) {
     /* browser width 320px */
 
+    .container {
+        width: 100%;
+        padding: 0 15px;
+    }
+
     .logo {
-        top: 15px;
-        left: 10px;
+        left: 15px;
     }
 
     .hamburger {
-        right: 10px;
-        top: 16px;
-        transform: translateY(0%);
-        width: 22px;
-        height:18px;
+        right: 20px;
+    }
+
+    .home {
+        background-position: 11% 0;
+        max-height: 660px;
+        &__wrapper {
+            padding-left: 0;
+            padding-bottom: 70px;
+        }
+        &__subtitle {
+            margin-top: 20px;
+        }
+    }
+
+    .font-home {
+        &_title {
+            font-size: 28px;
+            line-height: 60px;
+        }
+        &_subtitle {
+            font-size: 42px;
+            line-height: 48px;
+        }
+    }
+
+    .font {
+        &__descr {
+            &_about {
+                font-size: 20px;
+                line-height: 36px;
+                text-align: justify;
+            }
+        }
+    }
+
+    .font-alt {
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    .about {
+        min-height: 360px;
+        padding: 60px 0;
+        &__descr {
+            margin-top: 20px;
+        }
+    }
+
+    .advantage {
+        &__item {
+            padding: 40px 20px 60px 20px;
+        }
+        &__title {
+            margin-top: 25px;
+        }
+        &__descr {
+            margin-top: 5px;
+        }
     }
 }

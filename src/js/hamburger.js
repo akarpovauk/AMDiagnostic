@@ -16,11 +16,12 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     });
 
+
     if (window.innerWidth > 768) {
         advantageItem.forEach(item => {
-            item.classList.toggle('wow');
-            item.classList.toggle('animate__animated');
-            item.classList.toggle('animate__zoomIn');
+            item.classList.add('wow');
+            item.classList.add('animate__animated');
+            item.classList.add('animate__zoomIn');
 /*             let _class=item.getAttribute('class');
             let newClass=_class.replace(' wow', "");
             item.setAttribute('class', newClass); */
