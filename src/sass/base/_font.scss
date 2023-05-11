@@ -104,6 +104,7 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 29px;
+    // color: $color-gray;
     color: $color-gray;
     text-align: center;
     &_title{
@@ -112,6 +113,7 @@
     }
     &_justify {
         text-align: justify;
+        color: $color-gray-lightest;
     }
     &_left {
         text-align: left;

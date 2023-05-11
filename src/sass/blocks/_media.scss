@@ -39,11 +39,21 @@
             padding: 50px 25px;
         }
     }
+
+    .team {
+        &__item {
+            width: 45%;
+            padding: 0 5px;
+        }
+        &__wrapper {
+            min-height: 690px;
+        }
+    }
 }
 
 @media (max-width: 991px) {
     /* browser width 768px */
-    /* elements should not be in 1 row */
+    /* elements should not be in 1 row  == tablet */
     .container {
         max-width: 720px;
     }
@@ -75,7 +85,6 @@
                 }
             }
         }
-
     }
 
     .font-home {
@@ -94,6 +103,9 @@
             &_about {
                 font-size: 27px;
             }
+        }
+        &__big {
+            font-weight: 500;
         }
     }
 
@@ -119,6 +131,25 @@
             margin-top: 0;
         }
     }
+
+    .team {
+        padding: 100px 0 100px 0;
+        &__wrapper {
+            min-height: 650px;
+            justify-content: space-between;
+        }
+        &__item {
+            width: 47%;
+            padding: 0 5px;
+        }
+    }
+
+/*     .passion {
+        span {
+            width: 45px;
+            margin: 0 10px;
+        }
+    } */
     
     #submit, #close {
         cursor: default;
@@ -189,7 +220,6 @@
         display: none;
         position: fixed;
         top: 93px;
-        /* right: -100%; */
         right: 0;
         width: 100%;
         min-height: 246px;
@@ -248,13 +278,28 @@
             flex-wrap: wrap;
         }
         &__item {
+            width: 100%;
             padding: 80px 60px;
         }
         &__title {
             margin-top: 30px;
         }
         &__descr {
+            margin: 0 auto;
             margin-top: 10px;
+            width: 400px;
+        }
+    }
+
+    .team {
+        padding-bottom: 20px;
+        &__wrapper {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &__item {
+            width: 500px;
+            padding-bottom: 80px;
         }
     }
 }
@@ -305,6 +350,13 @@
                 line-height: 36px;
                 text-align: justify;
             }
+            &_passion {
+                font-size: 18px;
+                line-height: 36px;
+            }
+        }
+        &__big {
+            font-size: 26px;
         }
     }
 
@@ -324,12 +376,30 @@
     .advantage {
         &__item {
             padding: 40px 20px 60px 20px;
+            width: 100%;
         }
         &__title {
             margin-top: 25px;
         }
         &__descr {
             margin-top: 5px;
+            width: 100%;
+            max-width: 400px;
+        }
+    }
+
+    .team {
+        padding-top: 60px;
+        padding-bottom: 0px;
+    }
+
+    .passion {
+        padding: 40px 8px;
+        span {
+            margin: 0 5px;
+        }
+        &__heart {
+            width: 35px;
         }
     }
 }

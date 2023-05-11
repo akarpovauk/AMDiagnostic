@@ -1,4 +1,4 @@
-.passion {
+/* .passion {
     min-height: 280px;
     padding: 90px 0;
     background: linear-gradient(to right, rgba(0,0,0, .7), rgba(0,0,0, .7)), url('../img/bg/passion_bg.jpeg')center center/cover no-repeat;
@@ -11,13 +11,14 @@
     }
     span {
         display: flex;
-        width: 90px;
+        // width: 90px;
+        margin: 0 15px;
+        width: 67px;
         justify-content: center;
         align-items: center;
     }
     &__img {
-        // margin: 0 10px;
-        height: 50px;
+        width: 100%;
         &_animated {
             animation-name: heartbeat;
             animation-duration: 1.5s;
@@ -28,4 +29,39 @@
             }
         }
     }
+} */
+
+.passion {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    min-height: 280px;
+    padding: 60px 15px;
+    background: linear-gradient(to right, rgba(0,0,0, .7), rgba(0,0,0, .7)), url('../img/bg/passion_bg.jpeg')center center/cover no-repeat;
+    background-attachment: fixed;
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    span {
+        margin: 0 7px;
+    }
+    &__heart {
+        width: 65px;
+    }
+    &__img {
+        width: 100%;
+        &_animated {
+            animation-name: heartbeat;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
+    }
+
 }
