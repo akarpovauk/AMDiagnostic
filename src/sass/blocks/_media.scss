@@ -58,6 +58,17 @@
             }
         }
     }
+
+    .services {
+        &__block {
+            padding-top: 70px;
+            width: 50%;
+            &_padding {
+                padding: 0px 30px 0 30px;
+            }
+        }
+
+    }
 }
 
 @media (max-width: 991px) {
@@ -162,6 +173,30 @@
             }
         }
     }
+
+    .services {
+        padding: 100px 0;
+        &__block {
+            padding-top: 10px;
+            width: 50%;
+            &_padding {
+                padding: 0px 20px 0 20px;
+            }
+        }
+
+    }
+
+    .contact {
+        padding: 100px 0;
+    }
+
+    .feed-form {
+        justify-content: space-between;
+        &__column {
+            width: 350px;
+            margin: 0;
+        }
+    }
     
     #submit, #close {
         cursor: default;
@@ -262,6 +297,11 @@
         &__title {
             font-size: 16px;
         }
+        &__big {
+            &_services {
+                text-align: center;
+            }
+        }
     }
 
     .font-alt {
@@ -345,6 +385,28 @@
         }
     }
 
+    .services {
+        &__wrapper {
+            display: block;
+        }
+        &__block {
+            margin: 0 auto;
+            padding: 0px 40px;
+            width: 100%;
+            &_padding {
+                padding-bottom: 40px;
+            }
+        }
+
+    }
+
+    .feed-form {
+        justify-content: center;
+        &__column {
+            width: 430px;
+            margin: 0;
+        }
+    }
 
 } 
 
@@ -397,6 +459,9 @@
             &_passion {
                 font-size: 18px;
                 line-height: 36px;
+            }
+            &_contact {
+                line-height: 30px;
             }
         }
         &__big {
@@ -458,4 +523,26 @@
         }
 
     }
+
+    .services {
+        padding: 60px 0;
+        &__block {
+            padding: 0px 20px;
+            &_padding {
+                padding-bottom: 30px;
+            }
+        }
+    }
+
+    .contact {
+        padding: 60px 0;
+    }
+
+    .feed-form {
+        &__column {
+            width: 100%;
+        }
+    }
+
+
 }
