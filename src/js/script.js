@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('#close').on('click', function() {
+        document.body.style.overflow = '';
         $('.overlay, #thanks').fadeOut('slow');
     });
 
@@ -52,17 +53,20 @@ $(document).ready(function() {
             type: "POST",
             url: "mailer/smart.php",
             data: $(this).serialize()
-        }).done(function() {
-            $(this).find("input").val("");
-            $(this).find("textarea").val("");
+            }).done(function() {
+                $(this).find("input").val("");
+                $(this).find("textarea").val("");
 
-            $('.overlay, #thanks').fadeIn('slow');
+                $('.overlay, #thanks').fadeIn('slow');
+                document.body.style.overflow = 'hidden';
 
 
-            $("form").trigger("reset");
+                $("form").trigger("reset");
         });
         return false;
     });
+
+
 
     //  pageup
     $(window).scroll(function() {
