@@ -2,7 +2,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const menu = document.querySelector('.menu'),
           menuItem = document.querySelectorAll('.menu__item'),
           hamburger = document.querySelector('.hamburger'),
-          advantageItem = document.querySelectorAll('.advantage__item');
+          advantageItem = document.querySelectorAll('.advantage__item'),
+          homeSubtitle = document.querySelector('.home__subtitle');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('hamburger_active');

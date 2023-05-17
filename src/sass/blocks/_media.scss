@@ -290,6 +290,11 @@
         }
     }
 
+    .home {
+        background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg_m.webp');
+
+    }
+
     .font {
         &_menu {
             font-family: "Montserrat",'Helvetica Neue',sans-serif;
@@ -450,7 +455,7 @@
     }
 
     .home {
-        background-position: 11% 0;
+        background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg_s.webp');
         max-height: 660px;
         &__wrapper {
             padding-left: 0;
