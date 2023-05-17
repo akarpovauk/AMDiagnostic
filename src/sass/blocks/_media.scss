@@ -10,6 +10,9 @@
             top: 20px;
             left: 20px;
         }
+        &__img {
+            width: 200px;
+        }
     }
 
     .menu {
@@ -436,7 +439,10 @@
     }
 
     .logo {
-        left: 15px;
+        &_header {
+            left: 15px;
+        }
+
     }
 
     .hamburger {
