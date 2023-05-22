@@ -491,6 +491,9 @@
             &_contact {
                 line-height: 30px;
             }
+            &__policy {
+                font-size: 14px;
+            }
         }
         &__big {
             font-size: 26px;
@@ -572,6 +575,13 @@
     .feed-form {
         &__column {
             width: 100%;
+        }
+        &__wrapper {
+            padding: 0;
+        }
+        &__checkbox {
+            margin: 0;
+            margin-right: 12px;
         }
     }
 

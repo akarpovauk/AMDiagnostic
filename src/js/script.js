@@ -19,7 +19,8 @@ $(document).ready(function() {
                 subject: {
                     required: true
                 },
-                text: "required"
+                text: "required",
+                policy: "required"
             },
             messages: {
                 name: {
@@ -35,7 +36,11 @@ $(document).ready(function() {
                 },
                 text: {
                     required: "Please wright your message here"
+                },
+                policy: {
+                    required: "We're unable to store and use your information unless you give us your permission. Please select Yes to allow this"
                 }
+
             }
         });
     };

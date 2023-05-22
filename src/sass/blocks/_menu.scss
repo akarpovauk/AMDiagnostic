@@ -34,3 +34,13 @@
     }
     
 }
+
+.menu-privacy {
+    &_none {
+        list-style-type: none;
+    }
+    &__item {
+        padding: 2px 0;
+    }
+
+}
