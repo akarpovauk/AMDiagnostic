@@ -3,7 +3,8 @@ window.addEventListener('DOMContentLoaded', () => {
           menuItem = document.querySelectorAll('.menu__item'),
           hamburger = document.querySelector('.hamburger'),
           advantageItem = document.querySelectorAll('.advantage__item'),
-          homeSubtitle = document.querySelector('.home__subtitle');
+          cookie = document.querySelector('.cookie'),
+          ok = document.querySelector('#ok');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('hamburger_active');
@@ -16,6 +17,10 @@ window.addEventListener('DOMContentLoaded', () => {
             menu.classList.toggle('menu_active');
         })
     });
+
+    ok.addEventListener('click', () => {
+        cookie.classList.remove('cookie_active');
+    })
 
 
     if (window.innerWidth < 768) {

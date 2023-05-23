@@ -1,0 +1,18 @@
+.cookie {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 60px;
+    padding: 16px 0;
+    background-color: $color-gray-lightest;
+    &_active {
+        display: block;
+    }
+    &__wrapper {
+        display: flex;
+        min-height: 38px;
+        justify-content: space-around;
+    }
+}

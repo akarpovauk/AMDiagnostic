@@ -126,6 +126,9 @@
             &_about {
                 font-size: 27px;
             }
+            &_cookie {
+                line-height: 24px;
+            }
         }
         &__big {
             font-weight: 500;
@@ -233,6 +236,16 @@
                 text-decoration: none;
                 cursor: default;
             } 
+        }
+    }
+
+    .cookie {
+        &__descr {
+            text-align: left;
+        }
+        .button {
+            margin-left: 20px;
+            align-self: center;
         }
     }
 }
@@ -582,6 +595,16 @@
         &__checkbox {
             margin: 0;
             margin-right: 12px;
+        }
+    }
+
+    .cookie {
+        &__wrapper {
+            flex-direction: column-reverse;
+        }
+        .button {
+            align-self: flex-end;
+            margin-bottom: 15px;
         }
     }
 
