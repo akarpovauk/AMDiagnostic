@@ -109,6 +109,16 @@
         line-height: 45px;
         font-weight: 400;
     }
+    &_link {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: $color-main-dark;
+        text-decoration: none;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: left;
+    }
 }
 
 .font-alt {

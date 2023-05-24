@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     &__wrapper {
         padding: 90px 0;
+        color: $color-main;
     }
     &__title {
         margin-bottom: 0px;
@@ -17,4 +18,8 @@
         margin-top: 10px;
         margin-bottom: 0px;
     }
+    &__employees {
+        margin-top: 60px;
+    }
+
 }
