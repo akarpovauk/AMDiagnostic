@@ -20,6 +20,14 @@
     }
     &__employees {
         margin-top: 60px;
+
     }
 
+}
+
+.login-form {
+    display: none;
+    &_active {
+        display: block;
+    }
 }

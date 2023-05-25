@@ -4,7 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
           hamburger = document.querySelector('.hamburger'),
           advantageItem = document.querySelectorAll('.advantage__item'),
           cookie = document.querySelector('.cookie'),
-          ok = document.querySelector('#ok');
+          ok = document.querySelector('#ok'),
+          loginForm = document.querySelector('.login-form'),
+          forEmployeesLink = document.querySelector('.menu__link_empl');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('hamburger_active');
@@ -20,7 +22,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     ok.addEventListener('click', () => {
         cookie.classList.remove('cookie_active');
-    })
+    });
+
+    forEmployeesLink.addEventListener('click', () => {
+        loginForm.classList.add('login-form_active');
+    });
 
 
     if (window.innerWidth < 768) {
