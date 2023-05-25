@@ -28,6 +28,25 @@ window.addEventListener('DOMContentLoaded', () => {
         loginForm.classList.add('login-form_active');
     });
 
+    const login = () => {
+        const login = document.querySelector('input[name="login"]').value;
+        const pass = document.querySelector('input[name="password"]').value;
+    
+        const url = 'https://test-shmest.com/back/signin'
+    
+    
+           fetch(url, {method: 'POST',
+           
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ email: login, password: pass})
+          }).then(response => response.json())
+          .then(data => {
+              let tkn = data.token
+              localStorage.setItem('token', tkn)
+              loginForm.classList.remove('login-form_active');
+          })
+    }
+
 
     if (window.innerWidth < 768) {
         advantageItem.forEach(item => {
@@ -39,4 +58,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     item.setAttribute('class', newClass); */
         })
     }
+
+    
 });
