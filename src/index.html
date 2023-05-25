@@ -139,10 +139,28 @@
                     Tailored to suit your needs
                 </h2>
                 <h3 class="home__employees font-home font-home_link">
-                    <a href="" class="menu__link menu__link_empl font-home font-home_link">for employees</a> >>
+                    <a href="#" class="menu__link menu__link_empl font-home font-home_link">for employees</a> >>
                 </h3>
 
+                <form id = "login" class="feed-form">
+                    <div class="feed-form__column">
+                        <input class="feed-form__input" id="login" name="login" placeholder="E-mail" type="email">
+                        <input class="feed-form__input" id="password" type="password" name="password"  placeholder="password">
+                        <button class="button button_big feed-form__btn font font__title font__title_btn" id="signin" type="submit" name="signin">
+                            <i class="icon-arrow-right"></i>
+                            <span>Sign In</span>
+                        </button>   
+
+                    </div>
+                </form>
+
             </div>
+        </div>
+    </section>
+
+    <section class="employees">
+        <div class="container">
+            <h3 class="font font__title font__title_color">FOR employees</h3>
         </div>
     </section>
 
@@ -349,7 +367,7 @@
 
                     <div class="feed-form__policy font font__descr font__descr_policy">
                         <div class="feed-form__wrapper">
-                            <input name="policy" id="policy" type="checkbox" class = "feed-form__checkbox">
+                            <input name="policy" id="policy" aria-label="I agree to the terms of Privacy Notice checkbox" type="checkbox" class = "feed-form__checkbox">
                             <span>I agree to the terms of
                                 <a href="/privacy.html"> Privacy Notice</a>
                             </span> 
