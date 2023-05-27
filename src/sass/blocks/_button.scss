@@ -20,6 +20,16 @@
     &_big {
         width: 50%;
     }
+    &_login {
+        width: 100%;
+        box-shadow:
+        inset 0 0 4px rgba(255, 255, 255, 0.7),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+        opacity: 0.8;
+        &:hover {
+            box-shadow: 1px 0px 5px $color-gray;
+        }
+    }
     &:hover {
         border: none;
         background-image: linear-gradient(to top, $color-sky 0%, rgb(42, 54, 104) 100%);
