@@ -1,0 +1,40 @@
+.portal {
+    // display: none;
+    min-height: 358px;
+    padding: 120px 0;
+    background-color: $color-main-dark;
+    &_active {
+        display: block;
+    }
+    &__tabs-wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    &__column {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+        padding: 0 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    &__tab {
+        width: 196px;
+        height: 30px;
+        padding: 6px 2px;
+        margin-bottom: 2px;
+        border-radius: 4px;
+        border: 1px solid $color-gray;
+        background-image: linear-gradient(to top, $color-gray-darkest 0%, $color-gray 100%);
+        &_active {
+            background-image: linear-gradient(to top, rgb(29, 39, 75) 0%, rgba(9, 28, 95, 0.7) 100%);
+            color: $color-main;
+        }
+        &_done {
+            background-image: linear-gradient(to top, rgba(18, 47, 166, 0.9) 0%, rgba(17, 61, 220, 0.7) 100%);
+        }
+    }
+}

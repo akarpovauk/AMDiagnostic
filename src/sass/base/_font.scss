@@ -12,6 +12,13 @@
         text-decoration: none;
         text-align: left;
     }
+    &_tab {
+        text-transform: none;
+        font-weight: 400;
+        // color: $color-gray-dark;
+        font-size: 14px;
+        line-height: 14px;
+    }
     &__title {
         font-size: 15px;
         line-height: 32px;
@@ -26,7 +33,6 @@
         }
         &_btn {
             line-height: 28px;
-            color: $color-main;
         }
         &_btn-modal {
             line-height: 20px;
@@ -35,6 +41,7 @@
             text-transform: none;
             color: $color-gray-dark;
         }
+
     }
     &__contact {
         font-size: 28px;
