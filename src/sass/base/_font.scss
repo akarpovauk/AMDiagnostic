@@ -28,6 +28,11 @@
             color: $color-gray-dark;
             letter-spacing: normal;
         }
+        &_portal {
+            color: $color-gray-dark;
+            letter-spacing: normal;
+            text-transform: none;
+        }
         &_team {
             color: $color-gray-light;
         }
@@ -103,6 +108,17 @@
         }
     }
 }
+
+.font-table {
+    font-family: "Hans Kendrick", 'Roboto','Helvetica Neue',sans-serif;
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
 
 .font-home {
     font-family: "Montserrat",'Helvetica Neue',sans-serif;

@@ -30,6 +30,10 @@
             box-shadow: 1px 0px 5px $color-gray;
         }
     }
+    &_table {
+        display: block;
+        width: 200px;
+    }
     &:hover {
         border: none;
         background-image: linear-gradient(to top, $color-sky 0%, rgb(42, 54, 104) 100%);
