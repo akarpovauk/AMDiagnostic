@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
     });
 
-const handleLogout = () => {
+    const handleLogout = () => {
 		localStorage.removeItem('token')
     		let style = 'display: block;';
 		let hideStyle = 'display: none;';
@@ -93,7 +93,7 @@ const handleLogout = () => {
 		passField().setAttribute('style', style);
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign in' 
 		employees().setAttribute('style', hideStyle);
-}
+    }
 
 
 
@@ -144,7 +144,7 @@ getEnabledIds().then(ids => console.log(ids))
 
 
 handleLogout();
-    
+ 
 });
 
 

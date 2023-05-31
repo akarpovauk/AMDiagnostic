@@ -1,247 +1,964 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Document</title> 
+ </head> 
+ <body> 
+  <form action="" id="6" class="portal__form"> 
+   <h3 class="font font__title font__title_portal">Philips MRI Competencies</h3> 
+   <div class="portal__wrapper"> 
+    <table class="table font-table"> 
+     <thead> 
+      <tr> 
+       <th rowspan="3"></th> 
+       <th rowspan="2" colspan="2" class="font-table title">Competency Achieved </th> 
+       <th rowspan="3" class="font-table title">Competency Comments</th> 
+       <th colspan="4" class="font-table title pt">training / tasks carried out</th> 
+      </tr> 
+      <tr> 
+       <th colspan="3"> Enter <span>date</span> &amp; trainers <span>initials</span> when task is successfully completed: </th> 
+       <th rowspan="2"> <span>Comments</span>: (multiple comments may be added at different stages of training) </th> 
+      </tr> 
+      <tr> 
+       <th>Initials</th> 
+       <th>Date</th> 
+       <th>Observed</th> 
+       <th>Supervised</th> 
+       <th>Independently</th> 
+      </tr> 
+     </thead> 
+     <tbody> 
+      <tr class="bg"> 
+       <td class="row_title title"></td> 
+       <td colspan="7"></td> 
+      </tr> 
+	   <tr class="bg"> 
+       <td class="row_title title">Scanner Room</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">I can use accessories to:</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td></td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr> 
 
-    <form action="" id="6" class="portal__form">
-        <h3 class="font font__title font__title_portal">Philips MRI Competencies</h3>
-        <div class="portal__wrapper">
-            <table class="table font-table">
-                <thead>
-                    <tr>
-                        <th rowspan="3"></th>
-                        <th rowspan="2" colspan="2" class="font-table title">Competency Achieved </th>
-                        <th rowspan="3" class="font-table title">Competency Comments</th>
-                        <th colspan="4" class="font-table title pt">training / tasks carried out</th>
-                    </tr>
-                    <tr>
-                        <th colspan="3">
-                            Enter <span>date</span> & trainers <span>initials</span> when task is successfully completed:  
-                        </th>
-                        <th rowspan="2">
-                            <span>Comments</span>: (multiple comments may be added at different stages of training)
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Initials</th>
-                        <th>Date</th>
-                        <th>Observed</th>
-                        <th>Supervised</th>
-                        <th>Independently</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg">
-                        <td class="row_title title">Essential Information</td>
-                        <td colspan="7"></td>
-                    </tr>
-                    <tr>
-                        <td>Able to turn scanner <span>on</span> from complete shutdown</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Able to turn scanner <span>on</span> form stand-by-mode</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Able to turn scanner <span>off</span> by complete shutdown</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Able to turn scanner <span>off</span> into stand-by mode</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Able to turn <span>on/off</span> remote consoles</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Understand local data storage issues</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Know location of protocols on Quality system</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Able to use patient table</td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                        <td>
-                            <input type="text" class="table__input">
-                        </td>
-                    </tr>
-                    <tr class="bg">
-                        <td class="row_title title">Scanner Room</td>
-                        <td colspan="7" class="table__row_title"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <button id="6_s" class="button button_table table__btn font font__title font__title_btn">submit</button>
-    </form>
-    
-</body>
+      <tr class="simple_row"> 
+       <td>Prevent skin to bore contact</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Prevent skin to skin contact</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Make the patient comfortable.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Immobilize the patient to reduce movement during the examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Hearing protection and nurse call</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can apply hearing protection to the patient</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I recognize that passive headphones don’t allow for communication and may cause image artefacts.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can securely position the nurse call button and provide instructions to the patient for its use.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>With my 1.5T system, I know to use both earplugs and headphones for hearing protection.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Emergency Magnet Stop Button</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can locate the emergency magnet off button.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can describe the events and potential risks that occur when the emergency shut down is initiated.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I recognize the asphyxiation and burn dangers associated with release of cryogens that occurs during emergency shut down.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can identify emergencies when the emergency magnet off button is used and not used.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I recognize that the emergency magnet off button (quench) is used only when there is risk of imminent danger.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">MR environnment (Magnetic Field; gradient; Radio Frequency and associated risk</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Patient/staff Contra-Indications</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Patient positionning (laser eye protection; acoustic hearing protection; patient alert system; use of pads...)</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Emergency procedures (Emergency Stop buttons; patient removal; Quench...)</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Accessories</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Magnet Room Environment</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Patient positioning and landmarking</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Operation of the table</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Operation on the gantry</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation and Positioning of the MRI Coils</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Q:System Procedure:</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>System Computer &amp; Monitor power</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Startup &amp; Shutdown</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Coil Environement</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of Standard Coils available on System</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of the Digital Surround Technology (DST) If available</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of the Total Digital Imaging coil suite If available</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of AIRCoil and MPCoils</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of additionnal Coils (GEM Flex; PV; 16ch Knee coil; 8ch Foot/Ankle; 8ch Breast; 16Ch Breast; 18ch Kneecoil)</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Coil Selection Interface including Auto Coil Select</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>AIR Touch Includes Flexible NPW and Selective Anatomy</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Console Environment</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of User Interface</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Protocol Management</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Patient Gating : Cardiac; PG ; RTr; Navigator</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Explanation of the scanning; Prescribing; Image Visualisation; Post-Processing and Archiving</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Options</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>AIRecon</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>AIRecon DL</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Automatic Slice Prescription : AirRx Brain; AirRX Knee</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Parallel Imaging:ASSET;ARC</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Intensity Correction:Pure; Scenic</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Dixon Technique: IDEAL; Flex</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D FSE Family :CUBE</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Propeller</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>MAGiC - acquisition - contrast reconstruction - pitfalls</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D GRE Family : BRAVO/MP-Rage; MENSA;MERGE ;SPGR</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D Promo 2.0</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>eSWAN</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D ASL</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Hyper Suite( Hypersense- Hyper Cupe- Hyper Band )</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>DWI Family: eDWI; FOCUS; MUSE/MUSE Stir; Synthetic DWI; Distortion Correction</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>SILENT suite</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>fMRI</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Cardiac Basic :Fiesta cine;Time Course;Cine IR;Late Enhancement</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Cardiac Advanced :3D HEART; CardioMap; ViosWorks</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>ViosWorks</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D BODY and Breast Family :VIBRANT/VIBRANT Flex; Lava /Lava Flex; Disco/Disco Flex</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>3D Stack of Stars : DISCO Star/ Lava Star</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Vascular : TRICKS</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Vascular NO CE : Inhance Inflow IR/Inhance 3D Velocity/Inhance 3D Delta Flow/Inhance 3D Velocity</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>QuickStep</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Pasting</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Auto-bind</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Examinations</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Routine Brain</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the patient for a brain examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I recognize that some passive headsets may cause image artifacts.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the Head coil and accessories.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can plan the brain examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Knee</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the patient for a knee examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the knee coil and accessories to reduce motion and improve patient comfort.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can plan the knee examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can post-process the examination images.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Liver</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the patient for an abdomen examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the abdomen coil and accessories to reduce motion and improve patient comfort.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can plan the abdomen examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can use breathhold and free breathing techniques to perform the examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can post-process the abdomen images.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Spine</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Refer to the Spine Workflow guide</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the patient for a spine examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the spine coil and accessories to reduce motion and improve patient comfort.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can add the spine ExamCard to the ScanList.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can plan the spine examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="bg"> 
+       <td class="row_title title">Ankle</td> 
+       <td colspan="7"></td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the patient for an ankle examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can position the ankle coil and accessories to reduce motion and improve patient comfort.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can add the ankle ExamCard to the ScanList.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>I can plan the ankle examination.</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+      <tr class="simple_row"> 
+       <td>Position Shim volume</td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="date" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+       <td> <input type="text" class="table__input"> </td> 
+      </tr>
+     </tbody> 
+    </table> 
+   </div> <button id="6_s" class="button button_table table__btn font font__title font__title_btn">submit</button> 
+  </form>  
+ </body>
 </html>
