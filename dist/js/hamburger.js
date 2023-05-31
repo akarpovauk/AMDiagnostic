@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		  loginSumbitButton = document.getElementById('loginSubmit');	
 	      agreed = localStorage.getItem('policyAgreed');	
 
-	
+	let sheetId = ''
 	
     	const logField = () => {
 		return document.querySelector('input[name="login"]');
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		return document.querySelector('input[name="password"]');
 	}	
 	const employees = () => {
-		return document.querySelector('.employees');
+		return document.querySelector('#portal');
 	}
      	
 	
@@ -67,7 +67,6 @@ window.addEventListener('DOMContentLoaded', () => {
           .then(data => {     
      let tkn = data.token
 		if (tkn !== null && tkn !== undefined && tkn.length > 10) {
-		debugger
              	localStorage.setItem('token', tkn)
                 handleLogin();
 		// let style = 'display: none;';
@@ -105,7 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign out'
 		employees().setAttribute('style', displayStyle); 
 		employees().scrollIntoView();
-		
+		showTable()
 	}
 
 
@@ -140,6 +139,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	}
 
+
+ 
 getEnabledIds().then(ids => console.log(ids))
 
 
