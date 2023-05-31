@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
           forEmployeesLink = document.querySelector('.menu__link_empl');
 		  loginSumbitButton = document.getElementById('loginSubmit');	
 	      agreed = localStorage.getItem('policyAgreed');	
-
+handleLogin()
 	let sheetId = ''
 	
     	const logField = () => {
