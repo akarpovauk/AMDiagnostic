@@ -93,7 +93,6 @@ const saveTable = () => {
             id: sheetId,
             table: arr
         }
-
         fetch(backendUrl + 'amds_create_sheet', 
         {method: 'POST',
         headers: { 'Content-Type': 'application/json' },
