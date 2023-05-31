@@ -56,5 +56,7 @@
     &__wrapper {
         max-width: 100%;
         overflow-x: scroll;
+        overflow: auto;
+        height: 300px;
     }
 }

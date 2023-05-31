@@ -1,20 +1,26 @@
 .table {
-
     margin-top: 10px;
     padding: 2px;
     border: 1px solid $color-gray-light;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    th {
+    &__z {
+        z-index: 5;
+    }
+    &__thead {
+        position: sticky;
+        top: 0;
+        background-color: $color-main-darkest;
+    }
+    &__th {
         font-weight: 400;
-        &.title {
-            padding: 2px 3px 0 3px;
-            // padding-top: 2px;
-            font-weight: 700;
-            line-height: 18px;
-            vertical-align: middle;
-        }
+    &__title {
+        padding: 2px 3px 0 3px;
+        font-weight: 700;
+        line-height: 18px;
+        vertical-align: middle;
+    }
         &.pt {
             padding: 0;
             padding-top: 6px;
@@ -22,7 +28,7 @@
 
         }
     }
-    th, td {
+    td {
         padding: 4px 2px;
         text-align: center;
         border-right: 1px solid $color-gray-light;
@@ -31,14 +37,41 @@
         &:first-child {
             border-left: 1px solid $color-gray-light;
             text-align: left;
+            white-space:normal;
+            min-width: 280px;
+            position: sticky;
+            left: 0;
+            background-color: $color-main-darkest;
         }
+    }
+    th {
+        padding: 4px 2px;
+        text-align: center;
+        border-right: 1px solid $color-gray-light;
+        border-bottom: 1px solid $color-gray-light;
+        white-space: nowrap;
+        &:first-child {
+            border-left: 1px solid $color-gray-light;
+            text-align: left;
+            white-space:normal;
+            min-width: 280px;
+            position: sticky;
+            left: 0;
+            background-color: $color-main-darkest;
+        }
+    }
+        // th:nth-child(2), td:nth-child(2) {
+        //     margin-left: 280px;
+        // }
         span {
             font-weight: 700;
         }
-    }
+
     td {
         &.row_title {
             // white-space: nowrap;
+            // white-space:normal;
+            // min-width: 300px;
             padding: 10px 2px 2px 2px;
             font-weight: 700;
             line-height: 14px;
@@ -46,6 +79,7 @@
         }
 
     }
+
     thead tr{
         &:first-child th {
             border-top: 1px solid $color-gray-light;
@@ -63,9 +97,15 @@
 
 
     }
+    &__body {
+        overflow-x: auto;
+    }
 }
 
 
 .bg {
     background-color: $color-row;
 }
+
+
+  
