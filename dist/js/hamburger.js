@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		  loginSumbitButton = document.getElementById('loginSubmit');	
 	      agreed = localStorage.getItem('policyAgreed');	
 
-	
+	let sheetId = ''
 	
     	const logField = () => {
 		return document.querySelector('input[name="login"]');
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		return document.querySelector('input[name="password"]');
 	}	
 	const employees = () => {
-		return document.querySelector('.employees');
+		return document.querySelector('#portal');
 	}
      	
 	
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
     });
 
-const handleLogout = () => {
+    const handleLogout = () => {
 		localStorage.removeItem('token')
     		let style = 'display: block;';
 		let hideStyle = 'display: none;';
@@ -93,7 +93,7 @@ const handleLogout = () => {
 		passField().setAttribute('style', style);
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign in' 
 		employees().setAttribute('style', hideStyle);
-}
+    }
 
 
 
@@ -105,7 +105,7 @@ const handleLogout = () => {
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign out'
 		employees().setAttribute('style', displayStyle); 
 		employees().scrollIntoView();
-		
+		showTable()
 	}
 
 
@@ -140,11 +140,27 @@ const handleLogout = () => {
 
 	}
 
+
+const showTable = () => {
+    if (sheetId.length === 0) {
+        sheetId = '6'
+    }
+    const url = '/amds/' + sheetId + ".html";
+    fetch(url)
+    .then(resp => resp.text())
+    .then(data => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html')
+        const tab = doc.querySelector("form[id='6']")
+        document.getElementById('portal').appendChild(tab)
+    })
+}
+
 getEnabledIds().then(ids => console.log(ids))
 
 
 handleLogout();
-    
+ 
 });
 
 
