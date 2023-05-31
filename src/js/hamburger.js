@@ -67,7 +67,6 @@ window.addEventListener('DOMContentLoaded', () => {
           .then(data => {     
      let tkn = data.token
 		if (tkn !== null && tkn !== undefined && tkn.length > 10) {
-		debugger
              	localStorage.setItem('token', tkn)
                 handleLogin();
 		// let style = 'display: none;';
@@ -141,16 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 
-const showTable = () => {
-    if (sheetId.length === 0) {
-        sheetId = '6'
-    }
-    const url = '/amds/' + sheetId + ".html";
-    fetch(url)
-    .then(resp => resp.text())
-    .then(data => console.log(data))
-}
-
+ 
 getEnabledIds().then(ids => console.log(ids))
 
 
