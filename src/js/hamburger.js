@@ -9,10 +9,13 @@ window.addEventListener('DOMContentLoaded', () => {
           forEmployeesLink = document.querySelector('.menu__link_empl');
 		  loginSumbitButton = document.getElementById('loginSubmit');	
 	      agreed = localStorage.getItem('policyAgreed');	
- 
-	let sheetId = ''
+
+          tabs = Array.from({ length: 20 }, (_, index) => document.getElementById(index + 1 + '_t'));
 
     window.scrollTo()
+
+ 
+ 
 
     const logField = () => {
 		return document.querySelector('input[name="login"]');
@@ -35,12 +38,43 @@ window.addEventListener('DOMContentLoaded', () => {
         menu.classList.toggle('menu_active');
     });
 
+    tabs.forEach(item => {
+        if (item !== null) {
+            item.addEventListener('click', () => {
+
+            tabs.forEach(tab => {
+                if (tab !== null) {
+                const id = tab.getAttribute('id')
+                if (id !== item.getAttribute('id')) {
+                    if (!isFilled(id.replace('_t', '')))
+                    tab.classList.remove('portal__tab_active')
+                }
+
+                } 
+                 
+                
+                
+            })
+
+            if (!isFilled(item.getAttribute('id').replace('_t', ''))) {
+            item.classList.add('portal__tab_active')
+        }
+        })
+
+
+     
+        
+        }
+
+    });
+
     menuItem.forEach(item => {
         item.addEventListener('click', () => {
             hamburger.classList.toggle('hamburger_active');
             menu.classList.toggle('menu_active');
         })
     });
+
 
     ok.addEventListener('click', () => {
         cookie.classList.remove('cookie_active');
@@ -94,6 +128,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		passField().setAttribute('style', style);
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign in' 
 		employees().setAttribute('style', hideStyle);
+        // let lo = document.location.href;
+        // document.location.href = lo;
     }
 
 

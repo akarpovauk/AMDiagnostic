@@ -1,11 +1,17 @@
 let sheetId = ''
-//let prefix = (document.location.href.includes(local)) ? '' : '/amds/'
-//let backendUrl = 'https://test-shmest.com/back/';
+let prefix = (document.location.href.includes('local')) ? '' : '/amds/'
+let backendUrl = 'https://test-shmest.com/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
-  let prefix = ''
-  let backendUrl = 'http://localhost:8082/';
+//   let prefix = ''
+//   let backendUrl = 'http://localhost:8082/';
+
+let vis = []
+let fil = []
 
 const expand = (a) => {
+    if (!vis.includes(a)) {
+        vis.push(a)
+    }
     clearForm().then((anc) => {
     sheetId = (a.replace('_t', ''))
   
@@ -15,38 +21,79 @@ const expand = (a) => {
  return sheetId;
 }
 
+
+
+const setTabButton = (a,stat) => {
+    const but = document.getElementById(a);
+    let cls = ''
+    if (stat === 'visited') {
+        cls = 'portal__tab portal__tab_active font font_tab';
+    } else if (stat === 'filled') {
+        cls =  'portal__tab portal__tab_done font font_tab'
+    } else {
+        cls = 'portal__tab font font_tab'
+    }
+    but.setAttribute('class', cls);
+}
+
 const clearForm = () => {
     return new Promise((resolve) => {
     let doc = document.getElementById('portal')
     const cont = doc.querySelector("form[id='" + sheetId + "']");
-    doc.removeChild(cont);
+    if (cont instanceof Node) {
+        doc.removeChild(cont);
+    }
+    
     resolve(true)
     })
 }
 
 const getCellNumber = (name, columns) => {
-    const cols = columns.split("'");
-    for (var i = 0; i < cols; i++) {
+    const cols = columns.split(",");
+    for (var i = 0; i < cols.length; i++) {
         if (cols[i] === name) {
-            return i + 1;
+            return i;
         }
     }
+    return -1;
 }
 
 const getRow = (name) => {
-    const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
-    const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-    return row;
+
+if (name.includes('Philips predefined Exam Card')) {
+    console.log(name)
 }
 
-const populateRow = (row, object, columns) => {
-    debugger
+    //const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
+    const xpath = "//td[starts-with(normalize-space(), '" 
+    + name 
+    + "') and substring(normalize-space(), string-length(normalize-space()) - string-length('" 
+    + name 
+    + "') + 1) = '" 
+    + name 
+    + "']";
+    const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    // if (name.includes("Exam Card")) {
+    //     console.log(row.getElementsByTagName("td")[0].innerText)
+    // }
+    return row.singleNodeValue.parentElement;;
+}
+
+const populateRow = (row, object, columns, rowName) => {
+ 
     var cols = row.getElementsByTagName('td');
 
-    columns.map(colName => {
+    columns.split(",").map(colName => {
         const col = getCellNumber(colName, columns)
-        if (col !== 1) {
-            cols[col].getElementsByTagName('input').value = object.colName;
+        if (col > 0) {
+            const colValue = object[colName]
+            try {
+                cols[col].getElementsByTagName('input')[0].value = colValue;
+            } catch {
+                console.log('blaming:')
+                console.log(rowName)
+            }
+            
         }
 
     })
@@ -61,18 +108,16 @@ const populateTable = () => {
         headers: {token: localStorage.getItem('token')}
         }
         ).then(resp => resp.json())
-        .then(data => {
-            debugger
-            data['message']})
+        .then(data => data['message'])
         .then(table => {
-            
+
             console.log(table)
             table.map(object => {
                 
                 
                 const name = object['row_name'];
                 const row = getRow(name); 
-                populateRow(row, object, columns);
+                populateRow(row, object, columns, name);
 
             })
         }) 
@@ -82,6 +127,7 @@ const populateTable = () => {
 } 
 
 const showTable = () => {
+    showLoader()
     if (sheetId.length === 0) {
         sheetId = '6'
     }
@@ -96,6 +142,10 @@ const showTable = () => {
         document.getElementById('portal').appendChild(cont);
     })
     .then(() => populateTable())
+    .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+    })
+    
 }
 
 const getColumns = () => {
@@ -105,6 +155,13 @@ const getColumns = () => {
         .then(resp => resp.text())
         .then(data => resolve(data))
     })
+}
+
+const showLoader = () => {
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal').style.top = '50%'
+    document.getElementById('modal').style.left = '50%'
+    document.getElementById('modal').style.width = "100%"
 }
 
 const readTable = () => {
@@ -126,7 +183,7 @@ const readTable = () => {
     
                     obj[colls[i]] = name
                 } else {
-                    obj[colls[i]] = cells[i -1].value
+                    obj[colls[i]] = (cells[i -1].value !== undefined && cells[i -1].value !== 'undefined') ? cells[i -1].value : ''
                 }
             }    
              array.push(obj);
@@ -142,7 +199,17 @@ const readTable = () => {
 
     })
 }
+
+const isFilled = (a) => {
+    return fil.includes(a);
+}
+
 const saveTable = () => {
+    
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal').style.top = '50%'
+    document.getElementById('modal').style.left = '50%'
+    document.getElementById('modal').style.width = "100%"
     readTable()
     .then((arr) => {
         const bod = {
@@ -155,5 +222,16 @@ const saveTable = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bod)}).then((resp) => resp.json())
         .then(data => console.log(data))
+        .then(() => document.getElementById('modal').style.display = 'none')
+        .then(() => {
+            if (!fil.includes(sheetId)) {
+                fil.push(sheetId)
+            }
+        })
+        .then(() => {
+            
+            document.getElementById(sheetId + '_t').classList.remove('portal__tab_active')
+            document.getElementById(sheetId + '_t').classList.add('portal__tab_done')
+        })
     })
 }
