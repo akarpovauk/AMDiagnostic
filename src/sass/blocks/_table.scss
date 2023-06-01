@@ -1,3 +1,4 @@
+
 th {
     border-right: 1px solid $color-gray-light;
     border-bottom: 1px solid $color-gray-light;
@@ -9,7 +10,9 @@ th {
         background-color: $color-main-darkest;
         text-align: left;
         white-space:normal;
-        min-width: 280px;
+        &.tac {
+            text-align: center;
+        }
     }
     
 }
@@ -22,10 +25,32 @@ td {
         border-left: 1px solid $color-gray-light;
         text-align: left;
         white-space:normal;
-        min-width: 280px;
         position: sticky;
         left: 0;
     }
+}
+
+
+.first {
+   min-width: 280px;
+   &_wide {
+    min-width: 350px;
+   } 
+}
+.narrow {
+    min-width: 70px;
+}
+.date {
+    min-width: 163px;
+}
+.comments {
+    min-width: 180px;
+}
+
+
+.bg-column {
+    background-color: $color-main-darkest;
+    padding: 3px 2px;
 }
 
 .table {
@@ -71,11 +96,13 @@ td {
     &__bg {
         background-color: $color-row;
         padding: 4px 2px;
+        &_orange {
+            background-color: $color-orange;
+        }
+        &_green {
+            background-color: $color-green;
+        }
     }
-    // &__td {
-    //     padding: 4px 2px;
-    //     background-color: $color-main-darkest;
-    // }
     &__btn {
         margin: 20px 0 0 auto;
     }
@@ -86,10 +113,17 @@ td {
         border: 0;
         width: 100%;
     }
+    &__img {
+        width: 100%;
+        height: 50px;
+    }
 }
 
 
 
+
+
+  
 
 
   
