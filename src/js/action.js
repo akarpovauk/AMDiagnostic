@@ -1,9 +1,9 @@
 let sheetId = ''
-// let prefix = '/amds/'
-// let backendUrl = 'https://test-shmest.com/back/';
-
- let prefix = ''
- let backendUrl = 'http://localhost:8082/';
+//let prefix = (document.location.href.includes(local)) ? '' : '/amds/'
+//let backendUrl = 'https://test-shmest.com/back/';
+const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
+  let prefix = ''
+  let backendUrl = 'http://localhost:8082/';
 
 const expand = (a) => {
     clearForm().then((anc) => {
@@ -24,6 +24,63 @@ const clearForm = () => {
     })
 }
 
+const getCellNumber = (name, columns) => {
+    const cols = columns.split("'");
+    for (var i = 0; i < cols; i++) {
+        if (cols[i] === name) {
+            return i + 1;
+        }
+    }
+}
+
+const getRow = (name) => {
+    const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
+    const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    return row;
+}
+
+const populateRow = (row, object, columns) => {
+    debugger
+    var cols = row.getElementsByTagName('td');
+
+    columns.map(colName => {
+        const col = getCellNumber(colName, columns)
+        if (col !== 1) {
+            cols[col].getElementsByTagName('input').value = object.colName;
+        }
+
+    })
+    
+}
+
+const populateTable = () => {
+    getColumns().then(columns => {
+    var url = backendUrl + 'amds_sheet?id=' + sheetId;
+    fetch(url, 
+        {method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+        }
+        ).then(resp => resp.json())
+        .then(data => {
+            debugger
+            data['message']})
+        .then(table => {
+            
+            console.log(table)
+            table.map(object => {
+                
+                
+                const name = object['row_name'];
+                const row = getRow(name); 
+                populateRow(row, object, columns);
+
+            })
+        }) 
+
+    })
+
+} 
+
 const showTable = () => {
     if (sheetId.length === 0) {
         sheetId = '6'
@@ -32,12 +89,13 @@ const showTable = () => {
     fetch(url)
     .then(resp => resp.text())
     .then(data => {
-        debugger
+     
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
         const cont = doc.querySelector("form[id='" + sheetId + "']");
         document.getElementById('portal').appendChild(cont);
     })
+    .then(() => populateTable())
 }
 
 const getColumns = () => {
@@ -84,7 +142,6 @@ const readTable = () => {
 
     })
 }
-
 const saveTable = () => {
     readTable()
     .then((arr) => {
