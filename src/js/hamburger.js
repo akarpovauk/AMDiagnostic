@@ -9,13 +9,15 @@ window.addEventListener('DOMContentLoaded', () => {
           forEmployeesLink = document.querySelector('.menu__link_empl');
 		  loginSumbitButton = document.getElementById('loginSubmit');	
 	      agreed = localStorage.getItem('policyAgreed');	
-handleLogin()
+ 
 	let sheetId = ''
-	
-    	const logField = () => {
+
+    window.scrollTo()
+
+    const logField = () => {
 		return document.querySelector('input[name="login"]');
 	}	
-    	const passField = () => {
+    const passField = () => {
 		return document.querySelector('input[name="password"]');
 	}	
 	const employees = () => {
