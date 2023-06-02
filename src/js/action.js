@@ -88,7 +88,11 @@ const populateRow = (row, object, columns, rowName) => {
         if (col > 0) {
             const colValue = object[colName]
             try {
+                
                 cols[col].getElementsByTagName('input')[0].value = colValue;
+                if (colValue === 'y') {
+                    cols[col].getElementsByTagName('input')[0].checked = true;
+                }
             } catch {
                 console.log('blaming:')
                 console.log(rowName)
@@ -164,6 +168,26 @@ const showLoader = () => {
     document.getElementById('modal').style.width = "100%"
 }
 
+const getCellValue = (val, checked) => {
+    if (val !== null && val !== undefined) {
+        if (checked !== null && checked !== undefined) {
+            if (checked === 'true' || checked === true) {
+                return 'y'
+            } else {
+                return (val !== 'y' && val !== 'f') ? val : 'f'
+            }
+        } else {
+            if (val === 'undefined') {
+                return ''
+            } else {
+                return val
+            }
+        }
+    } else {
+        return ''
+    }
+}
+
 const readTable = () => {
     return new Promise((resolve) => {
         getColumns().then((columns) => {
@@ -178,12 +202,11 @@ const readTable = () => {
             var colls = columns.split(",");
             let obj = {}
             for (var i = 0; i < colls.length; i++) {
-
                 if (i == 0) {
     
                     obj[colls[i]] = name
                 } else {
-                    obj[colls[i]] = (cells[i -1].value !== undefined && cells[i -1].value !== 'undefined') ? cells[i -1].value : ''
+                    obj[colls[i]] = getCellValue(cells[i -1].value, cells[i -1].checked)
                 }
             }    
              array.push(obj);

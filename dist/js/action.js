@@ -1,9 +1,9 @@
 let sheetId = ''
-//let prefix = (document.location.href.includes(local)) ? '' : '/amds/'
-//let backendUrl = 'https://test-shmest.com/back/';
+let prefix = (document.location.href.includes('local')) ? '' : '/amds/'
+let backendUrl = 'https://test-shmest.com/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
-  let prefix = ''
-  let backendUrl = 'http://localhost:8082/';
+//   let prefix = ''
+//   let backendUrl = 'http://localhost:8082/';
 
 let vis = []
 let fil = []
@@ -49,28 +49,55 @@ const clearForm = () => {
 }
 
 const getCellNumber = (name, columns) => {
-    const cols = columns.split("'");
-    for (var i = 0; i < cols; i++) {
+    const cols = columns.split(",");
+    for (var i = 0; i < cols.length; i++) {
         if (cols[i] === name) {
-            return i + 1;
+            return i;
         }
     }
+    return -1;
 }
 
 const getRow = (name) => {
-    const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
-    const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-    return row;
+
+if (name.includes('Philips predefined Exam Card')) {
+    console.log(name)
 }
 
-const populateRow = (row, object, columns) => {
-    debugger
+    //const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
+    const xpath = "//td[starts-with(normalize-space(), '" 
+    + name 
+    + "') and substring(normalize-space(), string-length(normalize-space()) - string-length('" 
+    + name 
+    + "') + 1) = '" 
+    + name 
+    + "']";
+    const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    // if (name.includes("Exam Card")) {
+    //     console.log(row.getElementsByTagName("td")[0].innerText)
+    // }
+    return row.singleNodeValue.parentElement;;
+}
+
+const populateRow = (row, object, columns, rowName) => {
+ 
     var cols = row.getElementsByTagName('td');
 
-    columns.map(colName => {
+    columns.split(",").map(colName => {
         const col = getCellNumber(colName, columns)
-        if (col !== 1) {
-            cols[col].getElementsByTagName('input').value = object.colName;
+        if (col > 0) {
+            const colValue = object[colName]
+            try {
+                
+                cols[col].getElementsByTagName('input')[0].value = colValue;
+                if (colValue === 'y') {
+                    cols[col].getElementsByTagName('input')[0].checked = true;
+                }
+            } catch {
+                console.log('blaming:')
+                console.log(rowName)
+            }
+            
         }
 
     })
@@ -85,18 +112,16 @@ const populateTable = () => {
         headers: {token: localStorage.getItem('token')}
         }
         ).then(resp => resp.json())
-        .then(data => {
-            debugger
-            data['message']})
+        .then(data => data['message'])
         .then(table => {
-            
+
             console.log(table)
             table.map(object => {
                 
                 
                 const name = object['row_name'];
                 const row = getRow(name); 
-                populateRow(row, object, columns);
+                populateRow(row, object, columns, name);
 
             })
         }) 
@@ -143,6 +168,26 @@ const showLoader = () => {
     document.getElementById('modal').style.width = "100%"
 }
 
+const getCellValue = (val, checked) => {
+    if (val !== null && val !== undefined) {
+        if (checked !== null && checked !== undefined) {
+            if (checked === 'true' || checked === true) {
+                return 'y'
+            } else {
+                return (val !== 'y' && val !== 'f') ? val : 'f'
+            }
+        } else {
+            if (val === 'undefined') {
+                return ''
+            } else {
+                return val
+            }
+        }
+    } else {
+        return ''
+    }
+}
+
 const readTable = () => {
     return new Promise((resolve) => {
         getColumns().then((columns) => {
@@ -157,12 +202,11 @@ const readTable = () => {
             var colls = columns.split(",");
             let obj = {}
             for (var i = 0; i < colls.length; i++) {
-
                 if (i == 0) {
     
                     obj[colls[i]] = name
                 } else {
-                    obj[colls[i]] = (cells[i -1].value !== undefined && cells[i -1].value !== 'undefined') ? cells[i -1].value : ''
+                    obj[colls[i]] = getCellValue(cells[i -1].value, cells[i -1].checked)
                 }
             }    
              array.push(obj);
@@ -184,13 +228,11 @@ const isFilled = (a) => {
 }
 
 const saveTable = () => {
- 
+    
     document.getElementById('modal').style.display = 'block';
     document.getElementById('modal').style.top = '50%'
     document.getElementById('modal').style.left = '50%'
     document.getElementById('modal').style.width = "100%"
- 
- 
     readTable()
     .then((arr) => {
         const bod = {
@@ -203,7 +245,6 @@ const saveTable = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bod)}).then((resp) => resp.json())
         .then(data => console.log(data))
- 
         .then(() => document.getElementById('modal').style.display = 'none')
         .then(() => {
             if (!fil.includes(sheetId)) {
@@ -215,6 +256,5 @@ const saveTable = () => {
             document.getElementById(sheetId + '_t').classList.remove('portal__tab_active')
             document.getElementById(sheetId + '_t').classList.add('portal__tab_done')
         })
- 
     })
 }
