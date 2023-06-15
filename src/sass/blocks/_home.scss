@@ -1,13 +1,13 @@
 .home {
     display: flex;
-    min-height: 440px;
-    height: 95vh;
+    min-height: 95vh;
     align-items: center;
     background-image:  linear-gradient(to right, $color-shadow, $color-shadow), url('../img/bg/home_bg.jpg');
     background-position: 0 0;
     background-size: cover;
     background-repeat: no-repeat;
     &__wrapper {
+        margin-top: 40px;
         padding: 90px 0;
         color: $color-main;
     }
