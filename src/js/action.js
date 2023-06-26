@@ -88,7 +88,7 @@ const populateRow = (row, object, columns, rowName) => {
         if (col > 0) {
             const colValue = object[colName]
             try {
-                
+                const val = (colValue.trim() === 'undefined') ? ' ' : colValue.trim()
                 cols[col].getElementsByTagName('input')[0].value = colValue;
                 if (colValue === 'y') {
                     cols[col].getElementsByTagName('input')[0].checked = true;
@@ -99,7 +99,6 @@ const populateRow = (row, object, columns, rowName) => {
             }
             
         }
-
     })
     
 }
@@ -206,7 +205,9 @@ const readTable = () => {
     
                     obj[colls[i]] = name
                 } else {
-                    obj[colls[i]] = getCellValue(cells[i -1].value, cells[i -1].checked)
+                    const val = getCellValue(cells[i -1].value, cells[i -1].checked)
+                    obj[colls[i]] = (val !== null && val !== undefined && val !== 'undefined') ? val : ' '
+                    debugger
                 }
             }    
              array.push(obj);
