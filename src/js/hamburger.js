@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
           ok = document.querySelector('#ok'),
           loginForm = document.querySelector('.login-form'),
           forEmployeesLink = document.querySelector('.menu__link_empl');
-		  loginSumbitButton = document.getElementById('loginSubmit');	
+		  loginSumbitButton = document.getElementById('loginSubmit');
+          loginError = document.getElementById('login-error');	
 	      agreed = localStorage.getItem('policyAgreed');	
 
           tabs = Array.from({ length: 20 }, (_, index) => document.getElementById(index + 1 + '_t'));
@@ -92,8 +93,9 @@ window.addEventListener('DOMContentLoaded', () => {
         let pass = passField().value;
 	
 	if (login !== null && login !== undefined && login.length > 2) {
-        const url = 'https://test-shmest.com/back/signin'
-    
+        //const url = 'https://test-shmest.com/back/signin'
+          //const url = 'http://localhost:8082/signin'  
+          const url = 'https://amdiagnostic.co.uk/back/signin'
     
            fetch(url, {method: 'POST',
            
@@ -104,12 +106,12 @@ window.addEventListener('DOMContentLoaded', () => {
      let tkn = data.token
 		if (tkn !== null && tkn !== undefined && tkn.length > 10) {
              	localStorage.setItem('token', tkn)
+                loginError.classList.remove('login-form__error_active')
                 handleLogin();
-		// let style = 'display: none;';
-		// loginField.setAttribute('style', style);
-		// passWordField.setAttribute('style', style);
-           //  loginForm.classList.remove('login-form_active')
-		}
+
+		} else {
+             loginError.classList.add('login-form__error_active')
+        }
           })
 
 	} 
@@ -135,7 +137,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 	const handleLogin = () => {
-    		let style = 'display: none;';
+    	let style = 'display: none;';
 		let displayStyle = 'display: block;'
 		logField().setAttribute('style', style);
 		passField().setAttribute('style', style);
@@ -143,6 +145,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		employees().setAttribute('style', displayStyle); 
 		employees().scrollIntoView();
 		showTable()
+        
 	}
 
 
@@ -163,7 +166,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	return new Promise((resolve) => {
   	var token = localStorage.getItem('token');
-	var url = 'https://test-shmest.com/back/amds_enabled_sheets'
+	var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
 
 	fetch(url, {
      	method: 'GET',

@@ -1,9 +1,9 @@
 let sheetId = ''
 let prefix = (document.location.href.includes('local')) ? '' : '/amds/'
-let backendUrl = 'https://test-shmest.com/back/';
+//let backendUrl = 'https://test-shmest.com/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
 //   let prefix = ''
-//   let backendUrl = 'http://localhost:8082/';
+   let backendUrl = 'http://localhost:8082/';
 
 let vis = []
 let fil = []
@@ -94,8 +94,8 @@ const populateRow = (row, object, columns, rowName) => {
                     cols[col].getElementsByTagName('input')[0].checked = true;
                 }
             } catch {
-                console.log('blaming:')
-                console.log(rowName)
+                // console.log('blaming:')
+                // console.log(rowName)
             }
             
         }
@@ -129,6 +129,56 @@ const populateTable = () => {
 
 } 
 
+// const download = () => {
+//     var url = backendUrl + 'download?head=true&id=' + sheetId
+//     fetch(url, {
+//         method: 'GET',
+//         headers: {token: localStorage.getItem('token')}
+//     })
+// }
+
+const download = () => {
+    var url = backendUrl + 'download?head=true&id=' + sheetId;
+    showLoader()
+    fetch(url, {
+      method: 'GET',
+      headers: { token: localStorage.getItem('token') },
+    })
+      .then((response) => {
+        // Check if response is successful
+        if (response.ok) {
+          // Extract the filename from Content-Disposition header
+          const fileName = document.querySelector("h3[class='font font__title font__title_portal']").innerHTML;
+          const contentDisposition = response.headers.get('content-disposition');
+          const filename = contentDisposition
+            ? contentDisposition
+                .split(';')
+                .find((part) => part.trim().startsWith('filename='))
+                .split('=')[1]
+                .trim()
+                .replace(/"/g, '')
+            : fileName + ".xls";
+  
+          // Trigger the file download
+          response.blob().then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+          });
+        } else {
+          // Handle the error case
+          console.log('Error downloading the file');
+        }
+      })
+      .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+      })
+      .catch((error) => {
+        console.log('Error downloading the file', error);
+      });
+  };
 const showTable = () => {
     showLoader()
     if (sheetId.length === 0) {
@@ -142,12 +192,23 @@ const showTable = () => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
         const cont = doc.querySelector("form[id='" + sheetId + "']");
-        document.getElementById('portal').appendChild(cont);
+        document.getElementById('cont').appendChild(cont);
     })
     .then(() => populateTable())
     .then(() => {
         setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
-    })
+    }).then(() => getAuthSuper().then((sta) => {
+        if (sta=='1') {
+            let portalForm = document.querySelector("form.portal__form");
+            let downloadButton = document.createElement('button');
+            downloadButton.id = 'download'
+            downloadButton.type = 'button'
+            downloadButton.onclick=download
+            downloadButton.className='button button_table table__btn font font__title font__title_btn';
+            downloadButton.innerHTML='Download'
+            portalForm.appendChild(downloadButton);
+        }
+    }))
     
 }
 
@@ -165,6 +226,20 @@ const showLoader = () => {
     document.getElementById('modal').style.top = '50%'
     document.getElementById('modal').style.left = '50%'
     document.getElementById('modal').style.width = "100%"
+}
+
+const getAuthSuper = () => {
+    return new Promise((resolve) => {
+        fetch(backendUrl + 'is-one?head=true', 
+        {
+        method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+        })
+        .then(resp => resp.text())
+        .then(response => {
+            resolve(response)
+        })
+    })
 }
 
 const getCellValue = (val, checked) => {
