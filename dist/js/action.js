@@ -1,6 +1,7 @@
 let sheetId = ''
-let prefix = (document.location.href.includes('local')) ? '' : '/amds/'
-//let backendUrl = 'https://test-shmest.com/back/';
+
+let prefix = ''
+//let backendUrl = 'https://amdiagnostic.co.uk/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
 //   let prefix = ''
    let backendUrl = 'http://localhost:8082/';
@@ -38,7 +39,7 @@ const setTabButton = (a,stat) => {
 
 const clearForm = () => {
     return new Promise((resolve) => {
-    let doc = document.getElementById('portal')
+    let doc = document.getElementById('cont')
     const cont = doc.querySelector("form[id='" + sheetId + "']");
     if (cont instanceof Node) {
         doc.removeChild(cont);
@@ -137,8 +138,12 @@ const populateTable = () => {
 //     })
 // }
 
+
+
+
 const download = () => {
-    var url = backendUrl + 'download?head=true&id=' + sheetId;
+    let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
+    var url = backendUrl + 'download?head=true&id=' + sheetId + '&userId=' + userId;
     showLoader()
     fetch(url, {
       method: 'GET',
@@ -201,12 +206,22 @@ const showTable = () => {
         if (sta=='1') {
             let portalForm = document.querySelector("form.portal__form");
             let downloadButton = document.createElement('button');
+            let userText = document.createElement('input');
+            let idContainer = document.createElement('div');
+            
             downloadButton.id = 'download'
             downloadButton.type = 'button'
-            downloadButton.onclick=download
+            downloadButton.onclick = download
+            userText.type = 'text'
+            userText.id = 'user-id'
+            idContainer.style = 'display: flex;'
+            userText.className = 'login-form__input'
+            userText.style = 'flex: 1; margin-top:22px'
             downloadButton.className='button button_table table__btn font font__title font__title_btn';
             downloadButton.innerHTML='Download'
-            portalForm.appendChild(downloadButton);
+            idContainer.appendChild(userText)
+            idContainer.appendChild(downloadButton)
+            portalForm.appendChild(idContainer);
         }
     }))
     
@@ -223,8 +238,8 @@ const getColumns = () => {
 
 const showLoader = () => {
     document.getElementById('modal').style.display = 'block';
-    document.getElementById('modal').style.top = '50%'
-    document.getElementById('modal').style.left = '50%'
+    document.getElementById('modal').style.top = '10%'
+    document.getElementById('modal').style.left = '10%'
     document.getElementById('modal').style.width = "100%"
 }
 
@@ -306,8 +321,8 @@ const isFilled = (a) => {
 const saveTable = () => {
     
     document.getElementById('modal').style.display = 'block';
-    document.getElementById('modal').style.top = '50%'
-    document.getElementById('modal').style.left = '50%'
+    document.getElementById('modal').style.top = '20%'
+    document.getElementById('modal').style.left = '0'
     document.getElementById('modal').style.width = "100%"
     readTable()
     .then((arr) => {

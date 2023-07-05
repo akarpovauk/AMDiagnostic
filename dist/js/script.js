@@ -49,25 +49,36 @@ $(document).ready(function() {
 
     $('#contact-form').submit(function(e) {
         e.preventDefault();
-
+    
         if (!$(this).valid()) {
             return;
         }
-
+    
+        var form = $(this); // Store the form element as a variable to ensure the correct context
+    
         $.ajax({
             type: "POST",
-            url: "mailer/smart.php",
-            data: $(this).serialize()
-            }).done(function() {
-                $(this).find("input").val("");
-                $(this).find("textarea").val("");
-
-                $('.overlay, #thanks').fadeIn('slow');
-                document.body.style.overflow = 'hidden';
-
-
-                $("form").trigger("reset");
+            url: "/middle/contact",
+            data: JSON.stringify({
+                email: form.find("input[name='email']").val(),
+                name: form.find("input[name='name']").val(),
+                subject: form.find("input[name='subject']").val(),
+                text: form.find("textarea[name='text']").val()
+            }),
+            headers: {
+                secret: 'qdb82qjd!^&shaagsa ashjjsag &^('
+            },
+            contentType: "application/json"
+        }).done(function() {
+            form.find("input").val("");
+            form.find("textarea").val("");
+    
+            $('.overlay, #thanks').fadeIn('slow');
+            document.body.style.overflow = 'hidden';
+    
+            form.trigger("reset");
         });
+    
         return false;
     });
 

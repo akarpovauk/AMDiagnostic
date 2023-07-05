@@ -94,8 +94,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	
 	if (login !== null && login !== undefined && login.length > 2) {
         //const url = 'https://test-shmest.com/back/signin'
-          const url = 'http://localhost:8082/signin'  
-          //const url = 'http://162.240.103.238:8082'
+          //const url = 'http://localhost:8082/signin'  
+          const url = 'https://amdiagnostic.co.uk/back/signin'
     
            fetch(url, {method: 'POST',
            
@@ -117,12 +117,13 @@ window.addEventListener('DOMContentLoaded', () => {
 	} 
 
 	} else {
-
+        location.reload()
 		handleLogout();
 	}
     });
 
     const handleLogout = () => {
+       // document.location.href = document.location.href
 		localStorage.removeItem('token')
     		let style = 'display: block;';
 		let hideStyle = 'display: none;';
@@ -166,7 +167,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	return new Promise((resolve) => {
   	var token = localStorage.getItem('token');
-	var url = 'https://test-shmest.com/back/amds_enabled_sheets'
+	var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
 
 	fetch(url, {
      	method: 'GET',

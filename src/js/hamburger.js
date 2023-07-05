@@ -117,12 +117,13 @@ window.addEventListener('DOMContentLoaded', () => {
 	} 
 
 	} else {
-
+        location.reload()
 		handleLogout();
 	}
     });
 
     const handleLogout = () => {
+       // document.location.href = document.location.href
 		localStorage.removeItem('token')
     		let style = 'display: block;';
 		let hideStyle = 'display: none;';
