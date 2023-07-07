@@ -1,3 +1,5 @@
+//const { addListener } = require("gulp");
+
 window.addEventListener('DOMContentLoaded', () => {
     const menu = document.querySelector('.menu'),
           menuItem = document.querySelectorAll('.menu__item'),
@@ -5,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
           advantageItem = document.querySelectorAll('.advantage__item'),
           cookie = document.querySelector('.cookie'),
           ok = document.querySelector('#ok'),
+          headerAlt = document.querySelector('#header-alt'),
           loginForm = document.querySelector('.login-form'),
           forEmployeesLink = document.querySelector('.menu__link_empl');
 		  loginSumbitButton = document.getElementById('loginSubmit');
@@ -15,7 +18,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.scrollTo()
 
- 
+    headerAlt.addEventListener('click', () => {
+        hamburger.classList.toggle('hamburger_active');
+        menu.classList.toggle('menu_active');
+    });
  
 
     const logField = () => {
@@ -33,6 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (agreed !== null && agreed !== undefined && agreed === 'yes') {
 	cookie.classList.remove('cookie_active');
     }
+    
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('hamburger_active');

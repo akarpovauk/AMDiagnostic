@@ -28,7 +28,10 @@
         border-radius: 4px;
         border: 1px solid $color-gray;
         background-image: linear-gradient(to top, $color-gray-darkest 0%, $color-gray 100%);
-        cursor: pointer;
+        cursor: pointer; 
+        &_admin {
+            background-image: linear-gradient(to top, rgb(44, 106, 9) 0%, rgb(28, 55, 12) 100%);
+        }
         &:hover {
             background-color:  $color-gray-hover;
         }

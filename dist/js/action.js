@@ -1,10 +1,10 @@
 let sheetId = ''
 
 let prefix = ''
-//let backendUrl = 'https://amdiagnostic.co.uk/back/';
+let backendUrl = (document.location.href.indexOf('localhost') > -1) ? 'http://localhost:8082/' : 'https://amdiagnostic.co.uk/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
 //   let prefix = ''
-   let backendUrl = 'http://localhost:8082/';
+//   let backendUrl = 'http://localhost:8082/';
 
 let vis = []
 let fil = []
@@ -24,6 +24,29 @@ const expand = (a) => {
 
 
 
+const searchUser = (el) => {
+    var name = el.value;
+    var url = backendUrl + "amds_users?name=" + name;
+    fetch(url, 
+        {method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+        }
+        ).then(resp => resp.json())
+        .then(data => {
+            debugger
+            let ucon = document.getElementById('users-cont');
+            data.map((user) => {
+                let uid = user.section;
+                let uname = user.content;
+                let anc = document.createElement('a');
+                anc.id = uid;
+                anc.innerHTML = uname;
+                anc.className = 'a-button';
+                ucon.appendChild(anc);
+            })
+        })
+}
+
 const setTabButton = (a,stat) => {
     const but = document.getElementById(a);
     let cls = ''
@@ -41,8 +64,12 @@ const clearForm = () => {
     return new Promise((resolve) => {
     let doc = document.getElementById('cont')
     const cont = doc.querySelector("form[id='" + sheetId + "']");
+    let admin = doc.querySelector('#admin-form')
     if (cont instanceof Node) {
         doc.removeChild(cont);
+    }
+    if (admin instanceof Node) {
+        doc.removeChild(admin)
     }
     
     resolve(true)
@@ -130,15 +157,6 @@ const populateTable = () => {
 
 } 
 
-// const download = () => {
-//     var url = backendUrl + 'download?head=true&id=' + sheetId
-//     fetch(url, {
-//         method: 'GET',
-//         headers: {token: localStorage.getItem('token')}
-//     })
-// }
-
-
 
 
 const download = () => {
@@ -184,6 +202,22 @@ const download = () => {
         console.log('Error downloading the file', error);
       });
   };
+
+ 
+
+const expandAdmin = () => {
+    clearForm();
+    var url = 'admin.html';
+    fetch(url)
+    .then((resp => resp.text()))
+    .then(data => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+        const cont = doc.querySelector("form[id='admin-form']");
+        document.getElementById('cont').appendChild(cont);
+    })
+}
+
 const showTable = () => {
     showLoader()
     if (sheetId.length === 0) {
@@ -208,6 +242,17 @@ const showTable = () => {
             let downloadButton = document.createElement('button');
             let userText = document.createElement('input');
             let idContainer = document.createElement('div');
+            let adminButton = document.createElement('li');
+            adminButton.id = 'admin_tab';
+            adminButton.onclick = expandAdmin
+            adminButton.innerHTML = 'Admin portal'
+            adminButton.className = "portal__tab font font_tab portal__tab_admin";
+
+            let lastColumn = document.getElementById('last-column');
+            if (document.getElementById('admin_tab') === null || document.getElementById('admin_tab') === undefined) {
+                lastColumn.appendChild(adminButton);
+            }
+            
             
             downloadButton.id = 'download'
             downloadButton.type = 'button'
