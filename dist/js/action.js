@@ -1,5 +1,5 @@
 let sheetId = ''
-
+let userId = ''
 let prefix = ''
 let backendUrl = (document.location.href.indexOf('localhost') > -1) ? 'http://localhost:8082/' : 'https://amdiagnostic.co.uk/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
@@ -22,11 +22,48 @@ const expand = (a) => {
  return sheetId;
 }
 
+const generatePdf = (id) => {
+    return new Promise((resolve) => {
+        var url = backendUrl + "amds-init-file?userId=" + userId;
+        fetch(url, {method: 'GET', headers: {token: localStorage.getItem('token')}})
+        .then(() => {
+            resolve(true);
+        })
+    })
+}
 
+const setUser = (e) => {
+    showLoader()
+ e.preventDefault();
+ //userId = '46';
+ userId = e.target.id;
+ var source = backendUrl + "files/output_" + userId + ".pdf";
+ let ucon = document.getElementById('users-cont');
+ ucon.innerHTML = '';
+
+
+
+
+generatePdf()
+.then(() => {
+    let emb = document.createElement('embed');
+    emb.src = source;
+    emb.width = '1200';
+    emb.height = '1500';
+    emb.type = 'application/pdf';
+    ucon.appendChild(emb);
+}).then(() => {
+    setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+})
+
+
+ 
+}   
 
 const searchUser = (el) => {
     var name = el.value;
     var url = backendUrl + "amds_users?name=" + name;
+
     fetch(url, 
         {method: 'GET',
         headers: {token: localStorage.getItem('token')}
@@ -35,11 +72,14 @@ const searchUser = (el) => {
         .then(data => {
             debugger
             let ucon = document.getElementById('users-cont');
+            ucon.innerHTML = '';
             data.map((user) => {
                 let uid = user.section;
                 let uname = user.content;
                 let anc = document.createElement('a');
                 anc.id = uid;
+                anc.href = '#'
+                anc.onclick = setUser;
                 anc.innerHTML = uname;
                 anc.className = 'a-button';
                 ucon.appendChild(anc);
@@ -157,6 +197,49 @@ const populateTable = () => {
 
 } 
 
+const downloadUser = () => {
+ //   let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
+    var url = backendUrl + 'download?head=true&userId=' + userId;
+    showLoader()
+    fetch(url, {
+      method: 'GET',
+      headers: { token: localStorage.getItem('token') },
+    })
+      .then((response) => {
+        // Check if response is successful
+        if (response.ok) {
+          // Extract the filename from Content-Disposition header
+          const fileName = 'output_' + userId + '.pdf';
+          const contentDisposition = response.headers.get('content-disposition');
+          const filename = contentDisposition
+            ? contentDisposition
+                .split(';')
+                .find((part) => part.trim().startsWith('filename='))
+                .split('=')[1]
+                .trim()
+                .replace(/"/g, '')
+            : fileName + ".pdf";
+  
+          // Trigger the file download
+          response.blob().then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+          });
+        } else {
+          // Handle the error case
+          console.log('Error downloading the file');
+        }
+      })
+      .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+      })
+      .catch((error) => {
+        console.log('Error downloading the file', error);
+      });
+  };
 
 
 const download = () => {
