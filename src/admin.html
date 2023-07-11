@@ -8,28 +8,105 @@
             <col class = "comments">
             <col class = "comment">
 
+            <thead class="table__thead"> 
+                <tr> 
+                    <th rowspan="3" class ="table__th table__z"></th> 
+                    <!-- <th rowspan="2" colspan="2" class="table__title font-table"></th>  -->
+                    <th rowspan="3" class="table__title font-table"><br> </th> 
+ 
+                </tr> 
+            </thead> 
+            <tbody>
+                <tr>
+                    <td>
+                        <div id='search-section' style="display: flex; margin-top: 6px;">
+                            <input type="text" id="user-search" class="login-form__input" onchange='searchUser(this)' style="flex: 1 1 0%; margin-top: 22px;">
+                            <button id="search-iser-button" type="button" class="button button_table table__btn font font__title font__title_btn">Search</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="new-section" style="display: flex;">
+                            <div style="display: flex; align-items: flex-start;">
+                              <button id="new-user-button" style="margin-left:0px; margin-right:5px;" onclick="expandRegister(this)" type="button" class="button button_table table__btn font font__title font__title_btn">new user</button>
+                              <button id="current-user-button" style="margin-left:0px; margin-right:5px;" onclick="expandCurrent(this)" type="button" class="disbut disabled-button_big disbut_table table__btn font__title font__title_btn" disabled>current user</button>
+                            </div>
+                          </div>
+                    </td>
+                </tr>
+            </tbody>      
+        </table>
+        
+        <table class="table font-table"> 
+
+            <col class="first">
+
+            <col class = "comment">
 
             <thead class="table__thead"> 
                 <tr> 
                     <th rowspan="3" class ="table__th table__z"></th> 
-                    <th rowspan="2" colspan="2" class="table__title font-table"></th> 
-                    <th rowspan="3" class="table__title font-table">Competency <br> </th> 
+
+                    <th rowspan="3" class="table__title font-table"><br> </th> 
  
                 </tr> 
             </thead> 
 
             <tbody> 
+
                 <tr class="table__bg"> 
                     <td class= "table__row">
-                        <div style="display: flex;">
-                            <input type="text" id="user-search" class="login-form__input" onchange='searchUser(this)' style="flex: 1 1 0%; margin-top: 22px;">
-                            <button id="search-iser-button" type="button" class="button button_table table__btn font font__title font__title_btn">Search</button>
+             
+                        <div id="auth-section" style="display:none;">
+                            <h3>Authorisation Manager</h3>
+                            <p>Register a new user</p>
+                            <div><input type="email" id="new-email" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="new user email"></div>
+                            <div><input type="password" id="new-password" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="new user password"></div>
+                            <div><input type="password" id="confirm-password" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="retype password"></div>
+                            <div id="confirm-error" class="login-form__error">password does not match</div>
+                            <div><input type="text" id="new-name" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="new user name"></div>
+                            <div id="reg-error" class="login-form__error">please populate email, password and name fields with valid inputs</div>
+                            <div style="display:flex;">
+                                <button id="new-user-button" onclick="register()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">register</button>
+                                <button id="cancel-user-button" onclick="cancelRegister()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">cancel</button>
+                            </div>
                         </div>
+                        <div id="password-section" style="display:none;">
+                            <h3>Password Manager</h3>
+                            <p></p>
+                            <div><input type="password" id="re-password" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="new user password"></div>
+                            <div><input type="password" id="confirm-re-password" class="login-form__input" style="flex: 1 1 0%; margin-top: 22px;" placeholder="retype password"></div>
+                            <div id="reset-error" class="login-form__dark-error">
+                                please enter matching passwords!
+                            </div>
+                            <div style="display:flex;">
+                                <button id="new-user-button" onclick="changePassword(this)" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">reset</button>
+                                <button id="cancel-user-button" onclick="cancelReset()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">cancel</button>
+                            </div>`
+                            <div  style="display: flex;">
+                                <div id="locked" class="locked-text">
+                                    test status of the user
+                                </div>
+                                <div>
+                                    <button id="locked-button" onclick="testLocked()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">test</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </td> 
+        
+                    <td colspan="3">
+
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
                         <div id="users-cont">
 
                         </div>
-                    </td> 
-                    <td colspan="7"></td> 
+                    </td>
+                    <td></td>
                 </tr>
                
             </tbody> 

@@ -1,3 +1,5 @@
+
+
 let sheetId = ''
 let userId = ''
 let prefix = ''
@@ -20,6 +22,151 @@ const expand = (a) => {
     })
 
  return sheetId;
+}
+const unlock = () => {
+    var url = backendUrl + 'unlock?userId=' + userId;
+    fetch(url, {
+        method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+    }).then(response => response.json())
+    .then(data => {
+        if(data.message === 1) {
+            setLocked();
+        } else {
+            setUnlocked();
+        }
+    })
+}
+const setLocked = () => {
+    var but = document.getElementById('locked-button');
+    var loc = document.getElementById('locked');
+    but.innerHTML = 'unlock';
+    but.onclick = unlock;
+    loc.innerHTML = 'the user credentials are locked. unlock?'
+    loc.classList.add('locked-text_locked');
+}
+
+const changePassword = () => {
+    var pass = document.getElementById('re-password');
+    var conPass = document.getElementById('confirm-re-password');
+    var err = document.getElementById('reset-error');
+    err.classList.remove('login-form__dark-error_active');
+    if (pass.value !== '' && pass.value === conPass.value && pass.value.length > 3) {
+            var url = backendUrl + 'reset?userId=' + userId + '&password=' +  pass.value;
+    fetch(url, {
+        method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+    }).then(response => response.json())
+    .then(data => {
+        if (data.message && data.message === 'success') {
+            alert('The password was successfully reset!');
+            pass.value = '';
+            conPass.value = '';
+        }
+    })
+    } else {
+        err.classList.add('login-form__dark-error_active');
+    }
+
+}
+
+const setUnlocked = () => {
+    var but = document.getElementById('locked-button');
+    var loc = document.getElementById('locked');
+    but.innerHTML = 'test';
+    but.onclick = testLocked;
+    loc.innerHTML = 'the user credentials are not locked.'
+    loc.classList.add('locked-text_unlocked');
+}
+
+const testLocked = () => {
+    var url = backendUrl + 'test-locked?userId=' + userId;
+    fetch(url, {
+        method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+    }).then(response => response.json())
+    .then(data => {
+        if(data.message === 1) {
+            setLocked();
+        } else {
+            setUnlocked();
+        }
+    })
+}
+
+const expandRegister = (el) => {
+    document.getElementById('auth-section').style = 'display: block;';
+    document.getElementById('new-section').style='display: none;';
+    document.getElementById('search-section').style='display:none';
+    document.getElementById('users-cont').innerHTML = '';
+    
+}
+
+const expandCurrent = () => {
+    
+    document.getElementById('password-section').style = 'display: block;';
+    document.getElementById('new-section').style='display: none;';
+    document.getElementById('search-section').style='display:none';
+    document.getElementById('users-cont').innerHTML = '';
+}
+
+const register = () => {
+    var email = document.getElementById('new-email');
+    var password = document.getElementById('new-password');
+    var confirmPassword = document.getElementById('confirm-password');
+    var name = document.getElementById('new-name');
+    var genErr = document.getElementById('reg-error');
+    var passErr = document.getElementById('confirm-error');
+
+    genErr.classList.remove('login-form__error_active');
+    passErr.classList.remove('login-form__error_active');
+
+    if (password.value === '' || (password.value !== confirmPassword.value)) {
+        document.getElementById('confirm-error').classList.add('login-form__error_active');
+    } else {
+        let emailValue = email.value;
+        let passValue = password.value;
+        let nameValue = name.value.replace(/ /g, "_");
+
+        if (emailValue.length > 3 && passValue.length > 3 && nameValue.length > 2) {
+            showLoader();
+                var url = backendUrl + 'register';
+                var bod = {
+                    email: emailValue,
+                    password: passValue,
+                    name: nameValue
+                }
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        token: localStorage.getItem('token')
+                    },
+                    body: JSON.stringify(bod)
+                }).then(response => response.json())
+                .then(data => {
+                    debugger
+                    alert('CREATED: ' + data.create.message + ', UPDATED: ' + data.rename.message + ", UNLOCKED: " + data.unlock.message)
+                }).then(() => {
+                    cancelRegister();
+                    setTimeout(() => document.getElementById('modal').style.display = 'none', 1000) 
+                })
+            } else {
+                document.getElementById('reg-error').classList.add('login-form__error_active');
+            }
+    }
+
+}
+
+const cancelRegister = () => {
+    document.getElementById('search-section').style='display: flex';
+    document.getElementById('new-section').style='display: block;';
+    document.getElementById('auth-section').style = 'display: none;';
+}
+
+const cancelReset = () => {
+    document.getElementById('search-section').style='display: flex';
+    document.getElementById('new-section').style='display: block;';
+    document.getElementById('password-section').style = 'display: none;';
 }
 
 const generatePdf = (id) => {
@@ -52,8 +199,13 @@ generatePdf()
     emb.height = '1500';
     emb.type = 'application/pdf';
     ucon.appendChild(emb);
+    //document.getElementById('search-section').style = 'display: none';
 }).then(() => {
     setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+}).then(() => {
+    var disbut = document.getElementById('current-user-button');
+    disbut.disabled = null;
+    disbut.className = "button button_table table__btn font font__title font__title_btn";
 })
 
 
