@@ -2,7 +2,10 @@
 
 let sheetId = ''
 let userId = ''
+let fileId = ''
+let userName = ''
 let prefix = ''
+let userToken = ''
 let backendUrl = (document.location.href.indexOf('localhost') > -1) ? 'http://localhost:8082/' : 'https://amdiagnostic.co.uk/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
 //   let prefix = ''
@@ -42,7 +45,7 @@ const setLocked = () => {
     var loc = document.getElementById('locked');
     but.innerHTML = 'unlock';
     but.onclick = unlock;
-    loc.innerHTML = 'the user credentials are locked. unlock?'
+    loc.innerHTML = 'credentials are locked for user: ' + userName + '. unlock?'
     loc.classList.add('locked-text_locked');
 }
 
@@ -75,7 +78,7 @@ const setUnlocked = () => {
     var loc = document.getElementById('locked');
     but.innerHTML = 'test';
     but.onclick = testLocked;
-    loc.innerHTML = 'the user credentials are not locked.'
+    loc.innerHTML = 'redentials are not locked for user: ' + userName;
     loc.classList.add('locked-text_unlocked');
 }
 
@@ -108,6 +111,14 @@ const expandCurrent = () => {
     document.getElementById('new-section').style='display: none;';
     document.getElementById('search-section').style='display:none';
     document.getElementById('users-cont').innerHTML = '';
+}
+
+const getTableToken = () => {
+    if (userToken.length > 10) {
+        return userToken;
+    } else {
+        return localStorage.getItem('token');
+    }
 }
 
 const register = () => {
@@ -169,45 +180,82 @@ const cancelReset = () => {
     document.getElementById('password-section').style = 'display: none;';
 }
 
-const generatePdf = (id) => {
+const getRandom = (len) => {
+    const temp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUVWXYZ0123456789";
+    const charactersLength = temp.length;
+    let result = "";
+  
+  for (let i = 0; i < length; i++) {
+    result += temp.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  
+  return result;
+}
+
+const generatePdf = (dataId) => {
     return new Promise((resolve) => {
-        var url = backendUrl + "amds-init-file?userId=" + userId;
+ 
+        var url = backendUrl + "amds-init-file?userId=" + userId + "&fileId=" + dataId;
         fetch(url, {method: 'GET', headers: {token: localStorage.getItem('token')}})
         .then(() => {
-            resolve(true);
+            resolve(dataId);
         })
     })
+}
+
+
+const setUserProfile = (uid) => {
+    console.log('uid')
+    console.log(uid);
+    return new Promise((resolve) => {
+            let url = backendUrl + 'user-profile?userId=' + uid;
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    }).then(response => response.json())
+    .then(data => {
+        console.log(JSON.stringify(data))
+       // debugger
+        userName = data.id;
+        userToken = data.token;
+        resolve(true);
+    }) 
+    })
+
 }
 
 const setUser = (e) => {
     showLoader()
  e.preventDefault();
+ let did = getRandom(7);
  //userId = '46';
  userId = e.target.id;
- var source = backendUrl + "files/output_" + userId + ".pdf";
+ var source = backendUrl + "files/output_" + did + "_" + userId + ".pdf";
  let ucon = document.getElementById('users-cont');
  ucon.innerHTML = '';
-
-
-
-
-generatePdf()
-.then(() => {
-    let emb = document.createElement('embed');
-    emb.src = source;
-    emb.width = '1200';
-    emb.height = '1500';
-    emb.type = 'application/pdf';
-    ucon.appendChild(emb);
-    //document.getElementById('search-section').style = 'display: none';
-}).then(() => {
-    setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
-}).then(() => {
-    var disbut = document.getElementById('current-user-button');
-    disbut.disabled = null;
-    disbut.className = "button button_table table__btn font font__title font__title_btn";
+setUserProfile(e.target.id).then(() => {
+    
+    generatePdf(did)
+    .then(() => {
+        let emb = document.createElement('embed');
+        emb.src = source;
+        emb.width = '1200';
+        emb.height = '1500';
+        emb.type = 'application/pdf';
+        ucon.appendChild(emb);
+        //document.getElementById('search-section').style = 'display: none';
+    }).then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+    }).then(() => {
+        var disbut = document.getElementById('current-user-button');
+        disbut.disabled = null;
+        disbut.className = "button button_table table__btn font font__title font__title_btn";
+    })
 })
 
+ 
 
  
 }   
@@ -278,24 +326,27 @@ const getCellNumber = (name, columns) => {
     return -1;
 }
 
+const selectRow = (i) => {
+    var rows = document.querySelectorAll("tr.simple_row");
+    return rows[i];
+}
+
 const getRow = (name) => {
 
 if (name.includes('Philips predefined Exam Card')) {
     console.log(name)
-}
-
-    //const xpath = "//td[contains(text(), '" + name + "')]/parent::*"
+    }
+    var escName = name.replace("'", "\\'");
+ 
     const xpath = "//td[starts-with(normalize-space(), '" 
-    + name 
+    + escName 
     + "') and substring(normalize-space(), string-length(normalize-space()) - string-length('" 
-    + name 
+    + escName 
     + "') + 1) = '" 
-    + name 
+    + escName 
     + "']";
     const row = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-    // if (name.includes("Exam Card")) {
-    //     console.log(row.getElementsByTagName("td")[0].innerText)
-    // }
+ 
     return row.singleNodeValue.parentElement;;
 }
 
@@ -328,19 +379,23 @@ const populateTable = () => {
     var url = backendUrl + 'amds_sheet?id=' + sheetId;
     fetch(url, 
         {method: 'GET',
-        headers: {token: localStorage.getItem('token')}
+        //headers: {token: localStorage.getItem('token')}
+        headers: {token: getTableToken()}
         }
         ).then(resp => resp.json())
         .then(data => data['message'])
         .then(table => {
 
             console.log(table)
+            let ind = 0;
             table.map(object => {
                 
                 
                 const name = object['row_name'];
-                const row = getRow(name); 
-                populateRow(row, object, columns, name);
+              //  const row = getRow(name); 
+                const spRow = selectRow(ind);
+                populateRow(spRow, object, columns, name);
+                ind++;
 
             })
         }) 
@@ -403,10 +458,12 @@ const download = () => {
       headers: { token: localStorage.getItem('token') },
     })
       .then((response) => {
+        debugger
         // Check if response is successful
         if (response.ok) {
+            debugger
           // Extract the filename from Content-Disposition header
-          const fileName = document.querySelector("h3[class='font font__title font__title_portal']").innerHTML;
+          const fileName = document.querySelector("h3[class='font font__contact']").innerHTML;
           const contentDisposition = response.headers.get('content-disposition');
           const filename = contentDisposition
             ? contentDisposition
@@ -415,10 +472,11 @@ const download = () => {
                 .split('=')[1]
                 .trim()
                 .replace(/"/g, '')
-            : fileName + ".xls";
+            : fileName + ".xlsx";
   
           // Trigger the file download
           response.blob().then((blob) => {
+            debugger
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -458,7 +516,13 @@ const showTable = () => {
     if (sheetId.length === 0) {
         sheetId = '6'
     }
-    const url = prefix + sheetId + ".html";
+
+    getAuthSuper()
+    .then((isAdmin) => {
+
+    let pathSuff = (isAdmin !== '1') ? 'a' : '';
+
+    const url = prefix + sheetId + pathSuff + ".html";
     fetch(url)
     .then(resp => resp.text())
     .then(data => {
@@ -503,7 +567,15 @@ const showTable = () => {
             idContainer.appendChild(downloadButton)
             portalForm.appendChild(idContainer);
         }
-    }))
+    })).then(() => {
+        let caption = document.querySelector("h3[class='font font__contact']");
+        if (caption !== null && userName !== undefined && userName.length > 2) {
+            caption.innerHTML = caption.innerHTML + " for user: " + userName; 
+        }
+    })
+
+})
+
     
 }
 
@@ -577,7 +649,7 @@ const readTable = () => {
                 } else {
                     const val = getCellValue(cells[i -1].value, cells[i -1].checked)
                     obj[colls[i]] = (val !== null && val !== undefined && val !== 'undefined') ? val : ' '
-                    debugger
+          
                 }
             }    
              array.push(obj);
@@ -600,14 +672,22 @@ const isFilled = (a) => {
 
 const saveTable = () => {
     
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('modal').style.top = '20%'
-    document.getElementById('modal').style.left = '0'
-    document.getElementById('modal').style.width = "100%"
+    // document.getElementById('modal').style.display = 'block';
+    // document.getElementById('modal').style.top = '20%'
+    // document.getElementById('modal').style.left = '0'
+    // document.getElementById('modal').style.width = "100%"
+    showLoader();
     readTable()
     .then((arr) => {
+        let tok = getTableToken();
+        let token = localStorage.getItem('token');
+        debugger
+        if (tok !== null && tok !== undefined && tok.length > 10) {
+            token = tok;
+        }
         const bod = {
-            token: localStorage.getItem('token'),
+            //token: localStorage.getItem('token'),
+            token: token    ,
             id: sheetId,
             table: arr
         }
@@ -618,6 +698,7 @@ const saveTable = () => {
         .then(data => console.log(data))
         .then(() => document.getElementById('modal').style.display = 'none')
         .then(() => {
+            debugger
             if (!fil.includes(sheetId)) {
                 fil.push(sheetId)
             }
@@ -626,6 +707,9 @@ const saveTable = () => {
             
             document.getElementById(sheetId + '_t').classList.remove('portal__tab_active')
             document.getElementById(sheetId + '_t').classList.add('portal__tab_done')
+            setTimeout(() => document.getElementById('modal').style.display = 'none', 1000) 
+            debugger
         })
+
     })
 }
