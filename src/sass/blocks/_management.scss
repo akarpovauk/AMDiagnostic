@@ -1,0 +1,14 @@
+.management {
+    // min-height: 830px;
+	min-height: 258px;
+    padding: 120px 0;
+	// padding-bottom: 60px;
+    background-color: $color-sky;
+    &__title {
+        margin-bottom: 0;
+    }
+    &__descr {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}

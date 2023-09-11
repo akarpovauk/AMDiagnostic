@@ -46,7 +46,6 @@
             text-transform: none;
             color: $color-gray-dark;
         }
-
     }
     &__contact {
         font-size: 28px;
@@ -106,6 +105,9 @@
             line-height: 46px;
             text-align: left;
         }
+		&_team {
+			color: $color-gray-dark;
+		}
     }
 }
 
@@ -162,16 +164,19 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 29px;
-    // color: $color-gray;
     color: $color-gray;
     text-align: center;
     &_title{
-        color: $color-main;
+        // color: $color-main;
+		color: $color-gray-dark;
         text-transform: capitalize;
     }
     &_justify {
         text-align: justify;
-        color: $color-gray-lightest;
+		font-size: 14px;
+		line-height: 24px;
+		color: $color-gray-dark;
+        // color: $color-gray-lightest;
     }
     &_left {
         text-align: left;
