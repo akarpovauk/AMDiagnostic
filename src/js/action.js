@@ -114,11 +114,12 @@ const expandCurrent = () => {
 }
 
 const getTableToken = () => {
-    if (userToken.length > 10) {
-        return userToken;
-    } else {
-        return localStorage.getItem('token');
-    }
+    // if (userToken.length > 10) {
+    //     return userToken;
+    // } else {
+    //     return localStorage.getItem('token');
+    // }
+    return localStorage.getItem('token');
 }
 
 const register = () => {
@@ -217,9 +218,10 @@ const setUserProfile = (uid) => {
     }).then(response => response.json())
     .then(data => {
         console.log(JSON.stringify(data))
-       // debugger
+       debugger
         userName = data.id;
         userToken = data.token;
+        sessionStorage.setItem('userToken', data.token)
         resolve(true);
     }) 
     })
@@ -245,7 +247,7 @@ setUserProfile(e.target.id).then(() => {
         emb.height = '1500';
         emb.type = 'application/pdf';
         ucon.appendChild(emb);
-        //document.getElementById('search-section').style = 'display: none';
+         
     }).then(() => {
         setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
     }).then(() => {
@@ -386,7 +388,8 @@ const populateTable = () => {
         .then(data => data['message'])
         .then(table => {
 
-            console.log(table)
+
+            localStorage.setItem(sheetId, JSON.stringify(table))
             let ind = 0;
             table.map(object => {
                 
@@ -511,6 +514,52 @@ const expandAdmin = () => {
     })
 }
 
+const pages = {
+    "3": "3a",
+    "4": "4a",
+    "5": "5",
+    "6": "6a",
+    "7": "7a",
+    "8": "8a",
+    "9": "9",
+    "10": "10a",
+    "11": "11a",
+    "12": "12a",
+    "13": "13",
+    "14": "14a",
+    "15": "15a",
+    "16": "16a",
+    "17": "17a",
+    "18": "18a",
+    "19": "19a",
+    "20": "20",
+    "21": "21a"
+}
+
+const adminNumber = () => {
+    return sheetId
+}
+
+const userNumber = () => {
+    return pages[sheetId]
+}
+
+const getHtmlPath = (isAdmin) => {
+ 
+    if (isAdmin === '1') {
+        return adminNumber();
+    } else {
+        return userNumber();
+    }
+}
+
+const setSheetId = () => {
+    return new Promise(resolve => {
+        sheetId = 6
+        resolve(true)
+    })
+}
+
 const showTable = () => {
     showLoader()
     if (sheetId.length === 0) {
@@ -520,9 +569,11 @@ const showTable = () => {
     getAuthSuper()
     .then((isAdmin) => {
 
-    let pathSuff = (isAdmin !== '1') ? 'a' : '';
 
-    const url = prefix + sheetId + pathSuff + ".html";
+
+    const url = prefix  
+     + getHtmlPath(isAdmin) 
+     + ".html";
     fetch(url)
     .then(resp => resp.text())
     .then(data => {
@@ -582,7 +633,8 @@ const showTable = () => {
 const getColumns = () => {
     return new Promise((resolve) => {
         let url = backendUrl + 'amds_columns?id=' + sheetId;
-        fetch(url, {method: 'GET', headers: {token: localStorage.getItem('token')}})
+        let token = localStorage.getItem('token');
+        fetch(url, {method: 'GET', headers: {token: token}})
         .then(resp => resp.text())
         .then(data => resolve(data))
     })
@@ -687,7 +739,8 @@ const saveTable = () => {
         }
         const bod = {
             //token: localStorage.getItem('token'),
-            token: token    ,
+            token: token,
+            userToken: sessionStorage.getItem('userToken'),
             id: sheetId,
             table: arr
         }

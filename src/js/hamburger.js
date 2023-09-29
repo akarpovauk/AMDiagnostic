@@ -111,6 +111,8 @@ window.addEventListener('DOMContentLoaded', () => {
           }).then(response => response.json())
           .then(data => {     
      let tkn = data.token
+     console.log("USERNAME:")
+     console.log(data.id)
 		if (tkn !== null && tkn !== undefined && tkn.length > 10) {
              	localStorage.setItem('token', tkn)
                 loginError.classList.remove('login-form__error_active')
@@ -132,6 +134,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const handleLogout = () => {
        // document.location.href = document.location.href
 		localStorage.removeItem('token')
+         
     		let style = 'display: block;';
 		let hideStyle = 'display: none;';
 		logField().setAttribute('style', style);
@@ -145,14 +148,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 	const handleLogin = () => {
-    	let style = 'display: none;';
+        setSheetId().then(() => {
+        let style = 'display: none;';
 		let displayStyle = 'display: block;'
 		logField().setAttribute('style', style);
 		passField().setAttribute('style', style);
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign out'
 		employees().setAttribute('style', displayStyle); 
 		employees().scrollIntoView();
-		showTable()
+		showTable() 
+        })
+
         
 	}
 
