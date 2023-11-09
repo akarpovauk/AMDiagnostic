@@ -382,7 +382,10 @@ const populateTable = () => {
     fetch(url, 
         {method: 'GET',
         //headers: {token: localStorage.getItem('token')}
-        headers: {token: getTableToken()}
+        headers: {
+            token: getTableToken(),
+            userToken: sessionStorage.getItem('userToken')
+        }
         }
         ).then(resp => resp.json())
         .then(data => data['message'])
