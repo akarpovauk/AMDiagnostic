@@ -145,8 +145,6 @@ window.addEventListener('DOMContentLoaded', () => {
         // document.location.href = lo;
     }
 
-
-
 	const handleLogin = () => {
         setSheetId().then(() => {
         let style = 'display: none;';
@@ -158,12 +156,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		employees().scrollIntoView();
 		showTable() 
         })
-
-        
+ 
 	}
-
-
-
 
     if (window.innerWidth < 768) {
         advantageItem.forEach(item => {
@@ -177,21 +171,20 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 	const getEnabledIds = () => {
+		return new Promise((resolve) => {
+		var token = localStorage.getItem('token');
+		var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
 
-	return new Promise((resolve) => {
-  	var token = localStorage.getItem('token');
-	var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
-
-	fetch(url, {
-     	method: 'GET',
-      	headers: { 'Content-Type': 'application/json', 
-                 'token': token}
-	}).then(resp => resp.json())
-  	.then(response => {
-        resolve(response.message)
-  	})    
-	} )  
-
+		fetch(url, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json', 
+					'token': token}
+		})
+			.then(resp => resp.json())
+			.then(response => {
+				resolve(response.message)
+			})    
+		})  
 	}
 
 
