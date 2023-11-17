@@ -664,9 +664,9 @@ const getAuthSuper = () => {
     })
 }
 
-const getCellValue = (val, checked) => {
+const getCellValue = (val, checked, type) => {
     if (val !== null && val !== undefined) {
-        if (checked !== null && checked !== undefined) {
+        if (checked !== null && checked !== undefined && type!== 'text') {
             if (checked === 'true' || checked === true) {
                 return 'y'
             } else {
@@ -702,7 +702,7 @@ const readTable = () => {
     
                     obj[colls[i]] = name
                 } else {
-                    const val = getCellValue(cells[i -1].value, cells[i -1].checked)
+                    const val = getCellValue(cells[i -1].value, cells[i -1].checked, cells[i-1].type)
                     obj[colls[i]] = (val !== null && val !== undefined && val !== 'undefined') ? val : ' '
           
                 }
@@ -723,6 +723,55 @@ const readTable = () => {
 
 const isFilled = (a) => {
     return fil.includes(a);
+}
+
+
+const downloadUserTable = () => {
+    let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
+    var url = backendUrl + 'amds-download-page?id=' + sheetId;
+    showLoader()
+    fetch(url, {
+      method: 'GET',
+      headers: { token: localStorage.getItem('token') },
+    })
+      .then((response) => {
+
+        // Check if response is successful
+        if (response.ok) {
+
+          // Extract the filename from Content-Disposition header
+          const fileName = document.querySelector("h3[class='font font__contact']").innerHTML;
+          const contentDisposition = response.headers.get('content-disposition');
+          const filename = contentDisposition
+            ? contentDisposition
+                .split(';')
+                .find((part) => part.trim().startsWith('filename='))
+                .split('=')[1]
+                .trim()
+                .replace(/"/g, '')
+            : fileName + ".xlsx";
+  
+          // Trigger the file download
+          response.blob().then((blob) => {
+    
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+          });
+        } else {
+          // Handle the error case
+          console.log('Error downloading the file');
+        }
+      })
+      .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+      })
+      .catch((error) => {
+        console.log('Error downloading the file', error);
+      });
+
 }
 
 const saveTable = () => {
