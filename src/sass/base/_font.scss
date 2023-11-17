@@ -46,6 +46,9 @@
             text-transform: none;
             color: $color-gray-dark;
         }
+		&_policy {
+			line-height: 22px;
+		}
     }
     &__contact {
         font-size: 28px;
@@ -192,7 +195,7 @@
 
 }
 
-.font-privacy {
+.font-policy {
     font-family: "Hans Kendrick", 'Roboto','Helvetica Neue',sans-serif;
     font-weight: 400;
     color: $color-gray-dark;
@@ -211,11 +214,18 @@
         font-size: 15px;
         line-height: 20px;
         text-align: left;
+		span {
+			font-weight: 700;
+		}
     }
     &__p {
         font-size: 15px;
         line-height: 20px;
         text-align: justify;
+		span {
+			font-weight: 700;
+		}
     }
+	
 
 }    

@@ -81,7 +81,7 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
-      </style>
+    </style>
 </head>
 
 <body class="page">
@@ -96,9 +96,9 @@
 
         <div class="header__wrapper header__wrapper_main">
 
-            <a href="/" class="logo logo_header">
+            <a href="#home" class="logo logo_header">
                 <picture>
-                    <source type="image/webp" srcset="icons/logo.webp">
+                    <source type="image/webp" srcset="icons/logo.webp" class="logo__img">
                     <img src="icons/logo.png" alt="company's logo" class="logo__img">
                 </picture>
             </a>
@@ -123,21 +123,23 @@
                     <li class="menu__item">
                         <a href="#contact" class="menu__link font font_menu">Contact</a>
                     </li>
+					<li class="menu__item">
+                        <a href="#policies" class="menu__link font font_menu">Policies</a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
     </header>
 
-    
-    <header class="header header_alt_active" id="header-alt">
+    <header class="header header_alt" id="header-alt">
 
         <div class="header__wrapper header__wrapper_alt">
 
             <a href="#home" class="logo logo_header">
 
                 <picture>
-                    <source type="image/webp" srcset="icons/logo_alt.webp">
+                    <source type="image/webp" srcset="icons/logo_alt.webp" class="logo__img">
                     <img src="icons/logo_alt.png" alt="company's logo" class="logo__img">
                 </picture>
             </a>
@@ -162,12 +164,14 @@
                     <li class="menu__item">
                         <a href="#contact" class="menu__link font font_menu">Contact</a>
                     </li>
+					<li class="menu__item">
+                        <a href="#policies" class="menu__link font font_menu">Policies</a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
     </header>
-
 
     <section class="home" id="home">
         <div class="container">
@@ -478,7 +482,7 @@
                         <div class="feed-form__wrapper">
                             <input name="policy" id="policy" aria-label="I agree to the terms of Privacy Notice checkbox" type="checkbox" class = "feed-form__checkbox">
                             <span>I agree to the terms of
-                                <a href="/privacy.html"> Privacy Notice</a>
+                                <a href="privacy.html"> Privacy Notice</a>
                             </span> 
                         </div>
                     </div>
@@ -490,6 +494,29 @@
 
         </div>
     </section>
+
+	<section class="policies" id="policies">
+		<div class="container">
+			<h3 class="policies__title  font font__title">policies</h3>
+			<div class="policies__wrapper">
+				<div class="policies__item">
+					<h3 class="policies__title font font__title font__title_policy">
+						<a href="privacy.html" class="footer__link font font_menu font_lh">Privacy Notice</a>
+					</h3>
+				</div>
+				<div class="policies__item">
+					<h3 class="policies__title font font__title font__title_policy">
+						<a href="slavery.html" class="footer__link font font_menu font_lh">Modern Slavery Act statement</a>
+					</h3>
+				</div>
+				<div class="policies__item">
+					<h3 class="policies__title font font__title font__title_policy">
+						<a href="cookie.html" class="footer__link font font_menu font_lh">COOKIE POLICY</a>
+					</h3>
+				</div>
+			</div>
+		</div>
+	</section>
 
     <footer class="footer">
         <div class="container">
@@ -528,6 +555,9 @@
                     </a>
                     @2023
                 </div>   
+				<div class="footer__copyright-descr font font__descr font__descr_copyright">
+					Image by <a href="https://www.freepik.com/free-vector/white-abstract-background_12188655.htm" class="footer__copyright-link">Freepik</a>
+                </div>
             </div>
 
         </div>
@@ -551,6 +581,7 @@
         </div>
 
     </div>
+
     <a href="#home" class="pageup">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-circle-up" class="svg-inline--fa fa-chevron-circle-up fa-w-16 pageup__svg" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm231-113.9L103.5 277.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L256 226.9l101.6 101.6c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L273 142.1c-9.4-9.4-24.6-9.4-34 0z"></path></svg>
     </a>
@@ -559,13 +590,12 @@
         <div class="container">
             <div class="cookie__wrapper">
                 <span class="cookie__descr font font__descr font__descr_cookie">
-                    This website uses only essential cookies to ensure you get the best experience on our website.  <a href="/cookie.html">  Cookie notice</a>
+                    This website uses only essential cookies to ensure you get the best experience on our website.  <a href="cookie.html">Cookie notice</a>
                 </span>
                 <button id = "ok" class="button button_mini font font__title font__title_btn">OK</button>
             </div>
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -579,7 +609,7 @@
         <div class="modal-content">
           <div class="loader"></div>
         </div>
-      </div>
-      <script async src='https://features.workingfeedback.co.uk/carousel/9270788'></script>
+    </div>
+    <script async src='https://features.workingfeedback.co.uk/carousel/9270788'></script>
 </body>
 </html>
