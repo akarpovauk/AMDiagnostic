@@ -5,6 +5,9 @@
     &_alt {
         display: none;
     }
+	&_policy {
+		top: 0;
+	}
     &__wrapper {
         height: 93px;
         width: 100%;
@@ -13,6 +16,14 @@
         justify-content: center;
         color: $color-main;
         &_alt {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            color: $color-gray-lightest;
+            background-color: $color-sky;
+        }
+		&_policy {
             position: fixed;
             z-index: 1;
             top: 0;

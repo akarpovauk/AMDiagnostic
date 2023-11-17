@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const menu = document.querySelector('.menu'),
           menuItem = document.querySelectorAll('.menu__item'),
           hamburger = document.querySelector('.hamburger'),
+		  pageUp = document.querySelector('.pageup');
           advantageItem = document.querySelectorAll('.advantage__item'),
           cookie = document.querySelector('.cookie'),
           ok = document.querySelector('#ok'),
@@ -18,11 +19,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.scrollTo()
 
+	//pageUp
+
     headerAlt.addEventListener('click', () => {
         hamburger.classList.toggle('hamburger_active');
         menu.classList.toggle('menu_active');
     });
- 
+
+	function showPageUp() {
+		pageUp.classList.add('show');
+		pageUp.classList.remove('hide');
+	}
+
+	function hidePageUp() {
+		pageUp.classList.add('hide');
+		pageUp.classList.remove('show');
+	}
+
+	function showPageUpByScroll() {
+		if(window.scrollY >= 300) {
+			showPageUp();
+		} else {
+			hidePageUp();
+		}
+	}
+
+	window.addEventListener('scroll', showPageUpByScroll);
 
     const logField = () => {
 		return document.querySelector('input[name="login"]');
@@ -33,8 +55,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const employees = () => {
 		return document.querySelector('#portal');
 	}
-     	
-	
 
     if (agreed !== null && agreed !== undefined && agreed === 'yes') {
 	cookie.classList.remove('cookie_active');
@@ -45,6 +65,14 @@ window.addEventListener('DOMContentLoaded', () => {
         hamburger.classList.toggle('hamburger_active');
         menu.classList.toggle('menu_active');
     });
+
+	menuItem.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.toggle('hamburger_active');
+            menu.classList.toggle('menu_active');
+        })
+    });
+
 
     tabs.forEach(item => {
         if (item !== null) {
@@ -58,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     tab.classList.remove('portal__tab_active')
                 }
 
-                } 
+            } 
                  
                 
                 
@@ -76,12 +104,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    menuItem.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.toggle('hamburger_active');
-            menu.classList.toggle('menu_active');
-        })
-    });
 
 
     ok.addEventListener('click', () => {
@@ -145,8 +167,6 @@ window.addEventListener('DOMContentLoaded', () => {
         // document.location.href = lo;
     }
 
-
-
 	const handleLogin = () => {
         setSheetId().then(() => {
         let style = 'display: none;';
@@ -158,12 +178,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		employees().scrollIntoView();
 		showTable() 
         })
-
-        
+ 
 	}
-
-
-
 
     if (window.innerWidth < 768) {
         advantageItem.forEach(item => {
@@ -177,21 +193,20 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 	const getEnabledIds = () => {
+		return new Promise((resolve) => {
+		var token = localStorage.getItem('token');
+		var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
 
-	return new Promise((resolve) => {
-  	var token = localStorage.getItem('token');
-	var url = 'https://amdiagnostic.co.uk/back/amds_enabled_sheets'
-
-	fetch(url, {
-     	method: 'GET',
-      	headers: { 'Content-Type': 'application/json', 
-                 'token': token}
-	}).then(resp => resp.json())
-  	.then(response => {
-        resolve(response.message)
-  	})    
-	} )  
-
+		fetch(url, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json', 
+					'token': token}
+		})
+			.then(resp => resp.json())
+			.then(response => {
+				resolve(response.message)
+			})    
+		})  
 	}
 
 
