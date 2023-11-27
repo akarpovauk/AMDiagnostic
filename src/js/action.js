@@ -382,7 +382,10 @@ const populateTable = () => {
     fetch(url, 
         {method: 'GET',
         //headers: {token: localStorage.getItem('token')}
-        headers: {token: getTableToken()}
+        headers: {
+            token: getTableToken(),
+            userToken: sessionStorage.getItem('userToken')
+        }
         }
         ).then(resp => resp.json())
         .then(data => data['message'])
@@ -590,9 +593,47 @@ const showTable = () => {
         if (sta=='1') {
             let portalForm = document.querySelector("form.portal__form");
             let downloadButton = document.createElement('button');
-            let userText = document.createElement('input');
+            // let userText = document.createElement('input');
             let idContainer = document.createElement('div');
             let adminButton = document.createElement('li');
+           
+// to remove
+
+            var uploadForm = document.createElement('form');
+            uploadForm.id = 'uploadForm';
+            uploadForm.enctype = 'multipart/form-data';
+    
+     
+            var fileLabel = document.createElement('label');
+            fileLabel.for = 'fileInput';
+            fileLabel.textContent = 'Choose a file:';
+    
+     
+            var fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.id = 'fileInput';
+            fileInput.name = 'fileInput';
+            fileInput.accept = '*/*';
+    
+     
+            var lineBreak = document.createElement('br');
+    
+     
+            var uploadButton = document.createElement('button');
+            uploadButton.type = 'button';
+            uploadButton.textContent = 'Upload';
+            uploadButton.onclick = uploadFile;  
+    
+     
+            uploadForm.appendChild(fileLabel);
+            uploadForm.appendChild(fileInput);
+            uploadForm.appendChild(lineBreak);
+            uploadForm.appendChild(uploadButton);
+
+
+//
+
+
             adminButton.id = 'admin_tab';
             adminButton.onclick = expandAdmin
             adminButton.innerHTML = 'Admin portal'
@@ -606,15 +647,16 @@ const showTable = () => {
             
             downloadButton.id = 'download'
             downloadButton.type = 'button'
-            downloadButton.onclick = download
-            userText.type = 'text'
-            userText.id = 'user-id'
+            downloadButton.onclick = downloadUserTable
+            // userText.type = 'text'
+            // userText.id = 'user-id'
             idContainer.style = 'display: flex;'
-            userText.className = 'login-form__input'
-            userText.style = 'flex: 1; margin-top:22px'
+            // userText.className = 'login-form__input'
+            // userText.style = 'flex: 1; margin-top:22px'
             downloadButton.className='button button_table table__btn font font__title font__title_btn';
             downloadButton.innerHTML='Download'
-            idContainer.appendChild(userText)
+            idContainer.append(uploadForm)
+           // idContainer.appendChild(userText)
             idContainer.appendChild(downloadButton)
             portalForm.appendChild(idContainer);
         }
@@ -628,6 +670,50 @@ const showTable = () => {
 })
 
     
+}
+
+function uploadFile() {
+    
+    var input = document.getElementById('fileInput');
+    var file = input.files[0];
+
+    if (file) {
+        showLoader()
+        new Promise((resolve) => {
+            var formData = new FormData();
+            formData.append('file', file);
+            var uploadUrl = backendUrl + 'amds-upload?id=' + sheetId;  
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', uploadUrl, true);
+            xhr.setRequestHeader('token', localStorage.getItem('token'))
+            var userToken = sessionStorage.getItem('userToken')
+            if (userToken) {
+                xhr.setRequestHeader('user_token', userToken)
+            }
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('File uploaded successfully!');
+                    resolve('success')
+
+                } else {
+                    alert('File upload failed. Please try again.');
+                }
+            };
+            
+            xhr.send(formData);
+            
+        })
+        .then(() => {
+            setTimeout(() => document.getElementById('modal').style.display = 'none', 100) 
+            populateTable()
+        })
+        .then(() => {
+            
+        })
+    } else {
+        alert('Please choose a file to upload.');
+    }
 }
 
 const getColumns = () => {
@@ -661,9 +747,9 @@ const getAuthSuper = () => {
     })
 }
 
-const getCellValue = (val, checked) => {
+const getCellValue = (val, checked, type) => {
     if (val !== null && val !== undefined) {
-        if (checked !== null && checked !== undefined) {
+        if (checked !== null && checked !== undefined && type!== 'text') {
             if (checked === 'true' || checked === true) {
                 return 'y'
             } else {
@@ -699,7 +785,7 @@ const readTable = () => {
     
                     obj[colls[i]] = name
                 } else {
-                    const val = getCellValue(cells[i -1].value, cells[i -1].checked)
+                    const val = getCellValue(cells[i -1].value, cells[i -1].checked, cells[i-1].type)
                     obj[colls[i]] = (val !== null && val !== undefined && val !== 'undefined') ? val : ' '
           
                 }
@@ -720,6 +806,55 @@ const readTable = () => {
 
 const isFilled = (a) => {
     return fil.includes(a);
+}
+
+
+const downloadUserTable = () => {
+    let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
+    var url = backendUrl + 'amds-download-page?id=' + sheetId;
+    showLoader()
+    fetch(url, {
+      method: 'GET',
+      headers: { token: localStorage.getItem('token') },
+    })
+      .then((response) => {
+
+        // Check if response is successful
+        if (response.ok) {
+
+          // Extract the filename from Content-Disposition header
+          const fileName = document.querySelector("h3[class='font font__contact']").innerHTML;
+          const contentDisposition = response.headers.get('content-disposition');
+          const filename = contentDisposition
+            ? contentDisposition
+                .split(';')
+                .find((part) => part.trim().startsWith('filename='))
+                .split('=')[1]
+                .trim()
+                .replace(/"/g, '')
+            : fileName + ".xlsx";
+  
+          // Trigger the file download
+          response.blob().then((blob) => {
+    
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+          });
+        } else {
+          // Handle the error case
+          console.log('Error downloading the file');
+        }
+      })
+      .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+      })
+      .catch((error) => {
+        console.log('Error downloading the file', error);
+      });
+
 }
 
 const saveTable = () => {
