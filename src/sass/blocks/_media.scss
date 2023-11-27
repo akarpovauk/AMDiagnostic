@@ -196,6 +196,38 @@
         }
     }
 
+	.button {
+		&:hover {
+			border: none;
+			background-image: linear-gradient(to top, rgb(29, 39, 75) 0%, rgb(58, 77, 152) 100%);
+			box-shadow:  rgba(0,0,0, .12) 0px -3px 25px 0 inset, 3px 3px 20px $color-gray-light;
+		}
+		&_upload {
+			&:hover {
+				background-image: none;
+				box-shadow:none;
+				background: $color-main-darken;
+				border: 1px solid $color-gray-light;
+			}
+		}
+		&_slim {
+			&:hover {
+				border: none;
+				background-image: linear-gradient(to top, $color-gray-dark 0%, rgb(72, 72, 82) 100%);
+				box-shadow:  rgba(0,0,0, .12) 0px -3px 25px 0 inset, 3px 3px 20px $color-gray-light;
+			}
+		}
+	}
+
+	.upload {
+		&_file {
+			&:hover {
+				background: $color-main;
+				border: 2px solid $color-gray;
+			}
+		}
+	}
+
     .about {
         min-height: 400px;
         padding: 100px 0;
@@ -468,7 +500,19 @@
             width: 170px;
             height: 30px;
         }
+		&__buttons-section {
+			flex-direction: column;
+		}
+		&__form-button {
+			margin-top: 15px;
+		}
     }
+
+	.button {
+		&_slim {
+			width: fit-content;
+		}
+	}
 
     .advantage {
         &__wrapper {
