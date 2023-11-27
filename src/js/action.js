@@ -809,6 +809,35 @@ const isFilled = (a) => {
 }
 
 
+const downloadAll = () => {
+    showLoader()
+    let url = backendUrl + "amds-download-all";
+    fetch(url, {
+        method: 'GET',
+        headers: {token: localStorage.getItem('token')}
+    })
+    .then((response) => {
+        if (response.ok) {
+
+            filename = 'dbsnapshot.xlsx';
+ 
+            response.blob().then((blob) => {
+      
+              const url = window.URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = filename;
+              a.click();
+            });
+          } else {
+            // Handle the error case
+            console.log('Error downloading the file');
+          }
+    }).then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 2000) 
+    })
+}
+
 const downloadUserTable = () => {
     let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
     var url = backendUrl + 'amds-download-page?id=' + sheetId;
