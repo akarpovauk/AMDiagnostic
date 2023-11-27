@@ -59,4 +59,18 @@
         overflow: auto;
         max-height: 500px;
     }
+	&__buttons-section {
+		margin-top: 20px;
+		display: flex;
+		justify-content: space-between;
+		div {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&__form-button {
+		margin: 0;
+
+	}
+
 }
