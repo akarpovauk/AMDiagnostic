@@ -304,14 +304,20 @@ const setTabButton = (a,stat) => {
 
 const clearForm = () => {
     return new Promise((resolve) => {
-    let doc = document.getElementById('cont')
+    let doc = document.getElementById('cont-place');
+    let docCont = document.getElementById('cont');
+    let buttons = document.getElementById("admin-buttons");
     const cont = doc.querySelector("form[id='" + sheetId + "']");
-    let admin = doc.querySelector('#admin-form')
+   
+    let admin = docCont.querySelector('#admin-form')
     if (cont instanceof Node) {
         doc.removeChild(cont);
     }
+    if (buttons instanceof Node) {
+        buttons.style.display='none'
+    }
     if (admin instanceof Node) {
-        doc.removeChild(admin)
+        docCont.removeChild(admin)
     }
     
     resolve(true)
@@ -410,6 +416,18 @@ const populateTable = () => {
 
 } 
 
+const enableUploadButton = () => {
+    const fileInput = document.getElementById('fileInput');
+    const uploadButton = document.getElementById('uploadButton');
+
+    if (fileInput.value) {
+      uploadButton.disabled = false;
+      uploadButton.style=''
+    } else {
+      uploadButton.disabled = true;
+    }
+}
+
 const downloadUser = () => {
  //   let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
     var url = backendUrl + 'download?head=true&userId=' + userId;
@@ -505,7 +523,7 @@ const download = () => {
  
 
 const expandAdmin = () => {
-    clearForm();
+    clearForm().then(() => {
     var url = 'admin.html';
     fetch(url)
     .then((resp => resp.text()))
@@ -515,6 +533,8 @@ const expandAdmin = () => {
         const cont = doc.querySelector("form[id='admin-form']");
         document.getElementById('cont').appendChild(cont);
     })
+    })
+
 }
 
 const pages = {
@@ -543,6 +563,9 @@ const adminNumber = () => {
     return sheetId
 }
 
+
+
+
 const userNumber = () => {
     return pages[sheetId]
 }
@@ -564,6 +587,7 @@ const setSheetId = () => {
 }
 
 const showTable = () => {
+    
     showLoader()
     if (sheetId.length === 0) {
         sheetId = '6'
@@ -584,24 +608,29 @@ const showTable = () => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
         const cont = doc.querySelector("form[id='" + sheetId + "']");
-        document.getElementById('cont').appendChild(cont);
+        let container = document.getElementById('cont-place');
+        
+        container.appendChild(cont);
+      
     })
     .then(() => populateTable())
     .then(() => {
         setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+        document.getElementById('admin-buttons').style='';
+       
     }).then(() => getAuthSuper().then((sta) => {
         if (sta=='1') {
             let portalForm = document.querySelector("form.portal__form");
             let downloadButton = document.createElement('button');
             // let userText = document.createElement('input');
             let idContainer = document.createElement('div');
-            let adminButton = document.createElement('li');
+            let adminButton = document.createElement('li'); 
            
 // to remove
 
-            var uploadForm = document.createElement('form');
-            uploadForm.id = 'uploadForm';
-            uploadForm.enctype = 'multipart/form-data';
+            // var uploadForm = document.createElement('form');
+            // uploadForm.id = 'uploadForm';
+            // uploadForm.enctype = 'multipart/form-data';
     
      
             var fileLabel = document.createElement('label');
@@ -619,16 +648,16 @@ const showTable = () => {
             var lineBreak = document.createElement('br');
     
      
-            var uploadButton = document.createElement('button');
-            uploadButton.type = 'button';
-            uploadButton.textContent = 'Upload';
-            uploadButton.onclick = uploadFile;  
+          //  var uploadButton = document.createElement('button');
+            // uploadButton.type = 'button';
+            // uploadButton.textContent = 'Upload';
+            // uploadButton.onclick = uploadFile;  
     
      
-            uploadForm.appendChild(fileLabel);
-            uploadForm.appendChild(fileInput);
-            uploadForm.appendChild(lineBreak);
-            uploadForm.appendChild(uploadButton);
+            // uploadForm.appendChild(fileLabel);
+            // uploadForm.appendChild(fileInput);
+            // uploadForm.appendChild(lineBreak);
+            // uploadForm.appendChild(uploadButton);
 
 
 //
@@ -645,20 +674,20 @@ const showTable = () => {
             }
             
             
-            downloadButton.id = 'download'
-            downloadButton.type = 'button'
-            downloadButton.onclick = downloadUserTable
+            // downloadButton.id = 'download'
+            // downloadButton.type = 'button'
+            // downloadButton.onclick = downloadUserTable
             // userText.type = 'text'
             // userText.id = 'user-id'
             idContainer.style = 'display: flex;'
             // userText.className = 'login-form__input'
             // userText.style = 'flex: 1; margin-top:22px'
-            downloadButton.className='button button_table table__btn font font__title font__title_btn';
-            downloadButton.innerHTML='Download'
-            idContainer.append(uploadForm)
+            // downloadButton.className='button button_table table__btn font font__title font__title_btn';
+            // downloadButton.innerHTML='Download'
+        //    idContainer.append(uploadForm)
            // idContainer.appendChild(userText)
-            idContainer.appendChild(downloadButton)
-            portalForm.appendChild(idContainer);
+          //  idContainer.appendChild(downloadButton)
+         //   portalForm.appendChild(idContainer);
         }
     })).then(() => {
         let caption = document.querySelector("h3[class='font font__contact']");

@@ -248,10 +248,27 @@
                     </li>
                 </ul>
             </div>
-            
+            <div id="cont-place"></div>
             <!-- insert form here -->
-
+        <div class="portal__buttons-section" id="admin-buttons" style="display: none;">
+            <div>
+                <button id="" type="button" onclick="downloadUserTable()" class="button button_slim font font__title font__title_btn">
+                    download
+                </button> 
+        
+                <form id="uploadForm" class="upload" enctype="multipart/form-data">
+                    <!-- <label>Choose a file:</label> -->
+                    <input type="file" id="fileInput" class ="upload_file" name="fileInput" accept="*/*" onchange="enableUploadButton()">
+                    <button type="button" id="uploadButton" class ="button button_slim font font__title font__title_upld"  style='background: lightgray;' onclick="uploadFile()" disabled>Upload</button>
+                </form>
+            </div>
+        
+            <button id="3_s" type="button" onclick="saveTable()" class="button button_table portal__form-button font font__title font__title_btn">
+                submit
+            </button> 
         </div>
+        </div>
+
     </section>
 
     <section class="about" id="about">

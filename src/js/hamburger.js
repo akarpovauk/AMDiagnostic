@@ -168,6 +168,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 	const handleLogin = () => {
+        sessionStorage.clear()
         setSheetId().then(() => {
         let style = 'display: none;';
 		let displayStyle = 'display: block;'
