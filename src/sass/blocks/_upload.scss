@@ -6,8 +6,23 @@
 	display: flex;
 	border-radius: 2px;
 	input::-webkit-file-upload-button {
+		border: none;
+		outline: none;
+		background-image: linear-gradient(to top, $color-gray-dark 0%, rgb(72, 72, 82) 100%);
+		color: white;
 		height: 38px;
-		padding: 0 1px;
+		padding: 0 3px;
+		cursor: pointer;
+		&:hover {
+			border-radius: 2px;
+			background-image: linear-gradient(to top, rgb(72, 72, 62) 0%,  rgb(62, 62, 72) 100%);
+			box-shadow: -3px 3px 20px $color-gray;
+		}
+		&:active {
+			border-radius: 2px;
+			background-image: linear-gradient(to top, rgb(62, 62, 72) 0%,  rgb(52, 52, 62) 100%);
+			box-shadow: -3px 3px 20px $color-gray;
+		}
 	}
 	&_file {
 		margin: 0;
@@ -33,7 +48,7 @@
 		}
 		&:hover {
 			background: rgb(250, 250, 255);
-			border: 1px solid $color-gray-light;
+			border: 2px solid $color-gray-light;
 		}
 		&:visited,
 		&:focus,

@@ -74,6 +74,18 @@
 			background-image: linear-gradient(to top, rgb(62, 62, 72) 0%,  rgb(52, 52, 62) 100%);
 			box-shadow: 3px 3px 20px $color-gray;
 		}
-	}
+		&:disabled {
+			cursor: default;
+			background-image: none;
+			background-color: $color-gray-light;
+			border: 1px solid $color-gray;
+			border-radius: 2px;
+			box-shadow:none;
+			height: 38px;
+			padding: 11px 4px;
+			width: auto;
+		}
+	} 
+
 
 }

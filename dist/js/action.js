@@ -428,6 +428,14 @@ const enableUploadButton = () => {
     }
 }
 
+const disableUploadButton = () => {
+    const fileInput = document.getElementById('fileInput');
+    const uploadButton = document.getElementById('uploadButton');
+    fileInput.value = null;
+    uploadButton.disabled = true;
+ 
+}
+
 const downloadUser = () => {
  //   let userId = (document.getElementById('user-id') !== null && document.getElementById('user-id') !== undefined) ? document.getElementById('user-id').value : ''
     var url = backendUrl + 'download?head=true&userId=' + userId;
@@ -711,7 +719,7 @@ function uploadFile() {
         new Promise((resolve) => {
             var formData = new FormData();
             formData.append('file', file);
-            var uploadUrl = backendUrl + 'amds-upload?id=' + sheetId;  
+            var uploadUrl = backendUrl + 'amds-upload?id=' + sheetId + "&userToken=" + sessionStorage.getItem('userToken');  
     
             var xhr = new XMLHttpRequest();
             xhr.open('POST', uploadUrl, true);
@@ -727,7 +735,9 @@ function uploadFile() {
 
                 } else {
                     alert('File upload failed. Please try again.');
+                    setTimeout(() => document.getElementById('modal').style.display = 'none', 100) ;
                 }
+                disableUploadButton();
             };
             
             xhr.send(formData);
@@ -873,7 +883,10 @@ const downloadUserTable = () => {
     showLoader()
     fetch(url, {
       method: 'GET',
-      headers: { token: localStorage.getItem('token') },
+      headers: { 
+        token: localStorage.getItem('token'),
+        userToken: sessionStorage.getItem('userToken')
+    },
     })
       .then((response) => {
 
