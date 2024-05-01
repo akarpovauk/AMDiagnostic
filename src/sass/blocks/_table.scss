@@ -22,11 +22,12 @@ td {
     border-bottom: 1px solid $color-gray-light;
     white-space: nowrap;
     &:first-child {
+		position: sticky;
+        left: 0;
         border-left: 1px solid $color-gray-light;
         text-align: left;
         white-space:normal;
-        position: sticky;
-        left: 0;
+
     }
 }
 

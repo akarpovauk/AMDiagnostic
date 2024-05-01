@@ -169,6 +169,9 @@
 		&__title {
 			font-weight: 500;
 		}
+		&__title-privacy {
+			font-weight: 500;
+		}
 	}
 
     .portal {
@@ -483,6 +486,19 @@
         }
     }
 
+	.font-policy {
+		&__title-privacy {
+			font-size: 22px;
+		}
+	}
+
+	.font-table {
+		&_policy {
+			font-size: 16px;
+
+		}
+	}
+
     .pageup {
         width: 40px;
         height: 40px;
@@ -612,6 +628,26 @@
         }
     }
 
+	.policies {
+		&__th {
+			padding: 8px 2px 3px 8px;
+		}
+		&__td {
+			padding: 8px 2px 3px 8px;
+			ul {
+				padding-left: 16px;
+			}
+		}
+		&__table {
+			.font-table {
+				&_row {
+					font-size: 15px;
+					line-height: 18px;
+				}
+			}
+		}
+	}
+
 } 
 
 @media (max-width: 575px) {
@@ -729,6 +765,10 @@
 			font-size: 22px;
 			line-height: 28px;
 		}
+		&__subtitle-privacy {
+			font-size: 20px;
+			line-height: 26px;
+		}
 		&__p {
 			font-size: 14px;
 		}
@@ -845,6 +885,19 @@
 			width: 100%;
 			padding-bottom: 10px;
 		}
+		&__table {
+			.font-table {
+				&_row {
+					font-size: 14px;
+				}
+			}
+			td {
+				&:first-child {
+					background-color: white;
+				}
+			}
+		}
+
 	}
 
 }
