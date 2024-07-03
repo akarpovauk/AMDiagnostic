@@ -31,8 +31,8 @@
     "url": "https://github.com/akarpovauk/AMDiagnostic/issues"
   },
   "homepage": "https://github.com/akarpovauk/AMDiagnostic#readme",
-  "description": "",
   "dependencies": {
     "rename": "^1.0.4"
-  }
+  },
+  "description": ""
 }
