@@ -228,10 +228,10 @@ const generateTable = () => {
         userFields = data.userFields;
         fieldsModel = data.fieldsModel;
         fields = data.fields;
-        console.log(rowModel);
-        console.log(userFields);
-        console.log(fieldsModel);
-        console.log(fields);
+
+        for(row in rowModel) {
+            
+        }
 
     })
 }

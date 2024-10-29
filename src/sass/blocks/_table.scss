@@ -14,7 +14,6 @@ th {
             text-align: center;
         }
     }
-    
 }
 
 td {
@@ -31,12 +30,11 @@ td {
     }
 }
 
-
 .first {
-   min-width: 480px;
-   &_wide {
-    min-width: 550px;
-   } 
+   min-width: 300px;
+//    &_wide {
+//     min-width: 550px;
+//    } 
 }
 .narrow {
     min-width: 70px;
@@ -45,7 +43,10 @@ td {
     min-width: 163px;
 }
 .comments {
-    min-width: 180px;
+    min-width: 200px;
+}
+.checkbox {
+	min-width: 120px;
 }
 
 
@@ -97,6 +98,9 @@ td {
     &__bg {
         background-color: $color-row;
         padding: 4px 2px;
+		&:hover {
+			background-color: rgb(166,187,252);
+		}
         &_orange {
             background-color: $color-orange;
         }
@@ -115,6 +119,14 @@ td {
         width: 100%;
         height: 50px;
     }
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(0,0,0,0.2);
+		}
+	}
 }
 
 
