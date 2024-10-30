@@ -169,7 +169,6 @@ const register = () => {
 
 }
 
-
 const cancelRegister = () => {
     document.getElementById('search-section').style='display: flex';
     document.getElementById('new-section').style='display: block;';
@@ -202,37 +201,6 @@ const generatePdf = (dataId) => {
         .then(() => {
             resolve(dataId);
         })
-    })
-}
-
-const getTableModel = () => {
-    return new Promise((resolve, reject) => {
-        let url = backendUrl + 'amds-model?id=' + sheetId;
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                token: localStorage.getItem('token')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            resolve(data)
-        })
-    })
-}
- 
-const generateTable = () => {
-    getTableModel()
-    .then((data) => {
-        rowModel = data.model;
-        userFields = data.userFields;
-        fieldsModel = data.fieldsModel;
-        fields = data.fields;
-
-        for(row in rowModel) {
-            
-        }
-
     })
 }
 
