@@ -972,3 +972,90 @@ const saveTable = () => {
 
     })
 }
+
+const getTableModel = () => {
+    return new Promise((resolve, reject) => {
+        let url = backendUrl + 'amds-model?id=' + sheetId;
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            resolve(data)
+        })
+    })
+}
+
+const createTableRow = (rowModel, data) => {
+    let fieldsModel = data.fields;
+    let columnModel = data.fieldsModel; 
+    console.log(`this is info or not ${rowModel.info_row}`)
+    let tr = document.createElement("tr");
+    let rowName = document.createElement("td");
+    rowName.innerHTML = rowModel.row_name;
+    if (rowModel.info_row == "1") {
+        tr.className = "table__bg"
+        rowName.className = "table__row";
+        let colspan = document.createElement("td");
+        colspan.setAttribute("colspan", fieldsModel.split(",").length);
+        tr.append(rowName);
+        tr.append(colspan)
+
+    } else {
+        tr.className = "simple_row"
+        rowName.className = "bg-column";
+        tr.append(rowName);
+        for (let i = 0; i < fieldsModel.split(",").length; i++) {
+
+            let col = document.createElement("td");
+            
+            let fieldInput = document.createElement("input");
+            fieldInput.className = "table__input"
+            fieldInput.type = columnModel[fieldsModel.split(",")[i]];
+            col.append(fieldInput);
+            tr.append(col);
+
+        }
+    }
+    return tr;
+}
+ 
+
+
+const generateTable = () => {
+    getTableModel()
+    .then((data) => {
+        let rowModel = data.model;
+        let userFields = data.userFields;
+        let fieldsModel = data.fieldsModel;
+        let fields = data.fields;
+        let newTable = data.head;
+        let oldTable = document.querySelector("table[class='table font-table']")
+        let oldBody = document.querySelector("table[class='table font-table']>tbody")
+        oldBody.innerHTML = "";
+        oldTable.outerHTML = newTable
+ 
+
+        console.log(`rowModel value: ${rowModel}`);
+        console.log(`userFields value is ${userFields}`);
+        console.log(`fieldsModel value is ${fieldsModel}`);
+        console.log(`fields value is ${fields}`);
+      
+        for(let i = 0; i < rowModel.length; i++) {
+            let row = rowModel[i]
+            tr = createTableRow(row, data);
+            console.log(tr.outerHTML)
+            oldTable.querySelector("tbody").append(tr);
+        }
+        // oldTable.querySelector("tbody").innerHTML = body.innerHTML;
+        const tbody = document.querySelector("table.table.font-table > tbody");
+        const rows = tbody.querySelectorAll("tr");
+
+        rows.forEach(row => row.remove());
+        document.querySelector("table[class='table font-table']>tbody").innerHTML = oldTable.querySelector("tbody").innerHTML;
+ 
+    })
+}
