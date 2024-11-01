@@ -26,6 +26,76 @@ const expand = (a) => {
 
  return sheetId;
 }
+
+const reveal = (a) => {
+    showLoader();
+    if (!vis.includes(a)) {
+        vis.push(a)
+    }
+    cleanForm()
+    .then((anc) => {
+    sheetId = (a.replace('_t', ''))
+    
+   
+    return sheetId;
+    })
+    .then((sid) => {
+        document.querySelector(".portal__form").id = sid;
+    })
+    .then(() => {
+         loadGeneratedTable();
+    })
+    .then(() => {
+        setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
+        document.getElementById('admin-buttons').style='';
+       
+    }).then(() => getAuthSuper()
+    .then((sta) => {
+        if (sta=='1') {
+            let portalForm = document.querySelector("form.portal__form");
+            let downloadButton = document.createElement('button');
+            // let userText = document.createElement('input');
+            let idContainer = document.createElement('div');
+            let adminButton = document.createElement('li'); 
+           
+     
+            var fileLabel = document.createElement('label');
+            fileLabel.for = 'fileInput';
+            fileLabel.textContent = 'Choose a file:';
+    
+     
+            var fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.id = 'fileInput';
+            fileInput.name = 'fileInput';
+            fileInput.accept = '*/*';
+
+    
+            adminButton.id = 'admin_tab';
+            adminButton.onclick = expandAdmin
+            adminButton.innerHTML = 'Admin portal'
+            adminButton.className = "portal__tab font font_tab portal__tab_admin";
+
+            let lastColumn = document.getElementById('last-column');
+            if (document.getElementById('admin_tab') === null || document.getElementById('admin_tab') === undefined) {
+                lastColumn.appendChild(adminButton);
+            }
+
+            idContainer.style = 'display: flex;'
+
+        }
+    })).then(() => {
+        let caption = document.querySelector("h3[class='font font__contact']");
+        if (caption !== null && userName !== undefined && userName.length > 2) {
+            caption.innerHTML = caption.innerHTML + " for user: " + userName; 
+        }
+    })
+    
+
+ return sheetId;
+}
+
+
 const unlock = () => {
     var url = backendUrl + 'unlock?userId=' + userId;
     fetch(url, {
@@ -302,6 +372,29 @@ const setTabButton = (a,stat) => {
     but.setAttribute('class', cls);
 }
 
+
+const cleanForm = () => {
+    return new Promise((resolve) => {
+    let doc = document.getElementById('cont-place');
+    let docCont = document.getElementById('cont');
+    let buttons = document.getElementById("admin-buttons");
+    const cont = doc.querySelector("form[id='" + sheetId + "']");
+   
+    let admin = docCont.querySelector('#admin-form')
+    if (cont instanceof Node) {
+       cont.id = sheetId;
+    }
+    if (buttons instanceof Node) {
+        buttons.style.display='none'
+    }
+    if (admin instanceof Node) {
+        docCont.removeChild(admin)
+    }
+    
+    resolve(true)
+    })
+}
+
 const clearForm = () => {
     return new Promise((resolve) => {
     let doc = document.getElementById('cont-place');
@@ -571,7 +664,16 @@ const adminNumber = () => {
     return sheetId
 }
 
-
+const getUserName = () => {
+    return new Promise((resolve) => {
+        let url = backendUrl + 'amds_use_name';
+        fetch(url, {method: 'GET', headers: {token: localStorage.getItem("token")}})
+        .then(resp => resp.text())
+        .then((txt) => {
+            resolve(txt)
+        })
+    })
+}
 
 
 const userNumber = () => {
@@ -626,7 +728,8 @@ const showTable = () => {
         setTimeout(() => document.getElementById('modal').style.display = 'none', 4000) 
         document.getElementById('admin-buttons').style='';
        
-    }).then(() => getAuthSuper().then((sta) => {
+    }).then(() => getAuthSuper()
+    .then((sta) => {
         if (sta=='1') {
             let portalForm = document.querySelector("form.portal__form");
             let downloadButton = document.createElement('button');
@@ -967,7 +1070,7 @@ const saveTable = () => {
             document.getElementById(sheetId + '_t').classList.remove('portal__tab_active')
             document.getElementById(sheetId + '_t').classList.add('portal__tab_done')
             setTimeout(() => document.getElementById('modal').style.display = 'none', 1000) 
-            debugger
+            
         })
 
     })
@@ -992,7 +1095,7 @@ const getTableModel = () => {
 const createTableRow = (rowModel, data) => {
     let fieldsModel = data.fields;
     let columnModel = data.fieldsModel; 
-    console.log(`this is info or not ${rowModel.info_row}`)
+   // console.log(`this is info or not ${rowModel.info_row}`)
     let tr = document.createElement("tr");
     let rowName = document.createElement("td");
     rowName.innerHTML = rowModel.row_name;
@@ -1014,6 +1117,7 @@ const createTableRow = (rowModel, data) => {
             
             let fieldInput = document.createElement("input");
             fieldInput.className = "table__input"
+            fieldInput.id = fieldsModel.split(",")[i] + "_" + rowModel.row_name;
             fieldInput.type = columnModel[fieldsModel.split(",")[i]];
             col.append(fieldInput);
             tr.append(col);
@@ -1025,37 +1129,244 @@ const createTableRow = (rowModel, data) => {
  
 
 
-const generateTable = () => {
+const loadGeneratedTable = () => {
     getTableModel()
     .then((data) => {
         let rowModel = data.model;
         let userFields = data.userFields;
         let fieldsModel = data.fieldsModel;
+        let mappings = fieldsModel["mappings"]
         let fields = data.fields;
+
         let newTable = data.head;
         let oldTable = document.querySelector("table[class='table font-table']")
         let oldBody = document.querySelector("table[class='table font-table']>tbody")
         oldBody.innerHTML = "";
         oldTable.outerHTML = newTable
  
-
-        console.log(`rowModel value: ${rowModel}`);
-        console.log(`userFields value is ${userFields}`);
-        console.log(`fieldsModel value is ${fieldsModel}`);
-        console.log(`fields value is ${fields}`);
       
         for(let i = 0; i < rowModel.length; i++) {
             let row = rowModel[i]
-            tr = createTableRow(row, data);
-            console.log(tr.outerHTML)
+            let tr = createTableRow(row, data);
             oldTable.querySelector("tbody").append(tr);
         }
-        // oldTable.querySelector("tbody").innerHTML = body.innerHTML;
+
         const tbody = document.querySelector("table.table.font-table > tbody");
         const rows = tbody.querySelectorAll("tr");
 
         rows.forEach(row => row.remove());
         document.querySelector("table[class='table font-table']>tbody").innerHTML = oldTable.querySelector("tbody").innerHTML;
+        return(mappings)
+    })
+    .then((mappings) => {
+        populateGeneratedTable(mappings);
+    })
+}
+
+const populateGeneratedTable = (mappings) => {
+    let url = backendUrl + 'amds_sheet?id=' + sheetId;
+    fetch(url, 
+        {method: 'GET',
+        //headers: {token: localStorage.getItem('token')}
+        headers: {
+            token: getTableToken(),
+            userToken: sessionStorage.getItem('userToken')
+        }
+        }
+        ).then(resp => resp.json())
+        .then(data => data['message'])
+        .then((table) => {
+            debugger
+            for (let i = 0; i < table.length; i++) {
+                populateGeneratedRow(table[i], mappings);
+                if (i == table.length - 1) {
+                    document.getElementById('modal').style.display = 'none';
+                }
+            }
+        })
+}
+
+const populateGeneratedRow = (generated_row, mappings) => {
+    for (let key in generated_row) {
+        if (key in mappings) {
+            let updated_column = mappings[key];
+            let id = updated_column + '_' + generated_row["row_name"];
+            let control = document.getElementById(id);
+            if (control.getAttribute("type") === "checkbox") {
+                    let controlValue = generated_row[key];
+                    if (generated_row[key].length > 0) {
+                        control.checked = true;
+                } else {
+                    control.checked = false;
+                }   
+            } else {
+                control.value = generated_row[key];
+            }
+        
+        }
+
+
+    }
+}
+
+const currentDate = () => {
+    const date = new Date();
+    const year = date.getFullYear(); 
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const day = String(date.getDate()).padStart(2, '0'); 
+
+    return `${year}-${month}-${day}`; 
+}
+
+const getTableControl = (field, rowName, savedMappings) => {
+
+        for (let key in savedMappings) {
+            let arr = savedMappings[key];
+            for (var i = 0; i < arr.length; i++) {
+                let obj = arr[i];
+                if (obj["name"] == field) {
+                    let control = document.getElementById(key + '_' + rowName);
+                    return control;
+                }
+            }
+
+        }
+        let id = field + '_' + rowName;
+        let control = document.getElementById(id);
+        return control;
+
+}
+
+const getTableControlName = (field, savedMappings) => {
+
+    for (let key in savedMappings) {
+
+        let arr = savedMappings[key];
+        for (let i = 0; i < arr.length; i++) {
+            
+            let obj = arr[i];
+            if (obj["name"] == field) {
+                return key;
+            
+            }
+        }
+
+    }
+    return field;
+}
+
+
+
+const getMapping = (field, uiField, mapping) => {
+    let subMap = mapping[uiField];
+    let resultObject = null;
+    if (subMap == null) {
+        return null;
+    }
+    subMap.forEach(obj => {
+        if (obj.name === field && resultObject == null) {
+            resultObject = obj;
+    
+        }
+    })
+    return resultObject;
+}
+
+const submitTable = () => {
+    getUserName()
+    .then((userName) => {
+        debugger
+        showLoader()
+        getTableModel()
+        .then((data) => {
+            debugger
+            let rowModel = data.model;
+            let userFields = data.userFields;
+            let leg = data.legacyFields;
+            let legacyFields = leg.split(",");
+            let fieldsModel = data.fieldsModel;
+            let savedMappings = fieldsModel["saved-mappings"]
+            //these are all fields saved
+            let fields = data.fields.split(",");
+            let today = currentDate();
+            let body = [];
+            for (let i = 0; i < rowModel.length; i++) {
+                let row = rowModel[i]
+                if (row.info_row === "0") {
+                    let rowName = row["row_name"]
+                    let rowObject = {"row_name": rowName}
+                    legacyFields.forEach(field => {
+                        if (field !== "row_name") {
+                        let contName = getTableControlName(field, savedMappings);   
+                        if (contName === 'independently') {
+                            console.log("sa")
+                        }
+                        let control = getTableControl(field, rowName, savedMappings);
+                        let submap = getMapping(field, contName, savedMappings);
+                        let controlValue = "";
+                        if (control.type === "checkbox") {
+                            if(control.checked) {
+                                if(submap == null) {
+                                    controlValue = "";
+                                }
+                                if(submap.type === "date") {
+                                    controlValue = today;
+                                } else {
+                                    controlValue = userName;
+                                }
+                            }
+
+                        } else {
+                            controlValue = control.value
+                        }
+                  
+                        rowObject[field] = controlValue;
+                        console.log(typeof controlValue)
+                    }
+                    })
+
+                
+                    body.push(rowObject)
+              
+                }
+
+            }
+           return body;
+ 
+        })
+        .then((bd) => {
+
+ 
+                const bod = {
+                    //token: localStorage.getItem('token'),
+                    token: localStorage.getItem("token"),
+                    userToken: sessionStorage.getItem('userToken'),
+                    id: sheetId,
+                    table: bd
+                }
+                fetch(backendUrl + 'amds_create_sheet', 
+                {method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bod)}).then((resp) => resp.json())
+                .then(data => console.log(data))
+                .then(() => document.getElementById('modal').style.display = 'none')
+                .then(() => {
+                    debugger
+                    if (!fil.includes(sheetId)) {
+                        fil.push(sheetId)
+                    }
+                })
+                .then(() => {
+                    
+                    document.getElementById(sheetId + '_t').classList.remove('portal__tab_active')
+                    document.getElementById(sheetId + '_t').classList.add('portal__tab_done')
+                    setTimeout(() => document.getElementById('modal').style.display = 'none', 1000) 
+                    
+                })
+        
+           })
+             
  
     })
+
 }
