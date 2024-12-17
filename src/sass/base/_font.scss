@@ -19,6 +19,16 @@
         font-size: 14px;
         line-height: 14px;
     }
+	&_locked {
+		font-weight: 500;
+		text-align: left;
+	}
+	&_auth {
+		font-weight: 500;
+		text-align: left;
+		color: $color-gray-dark;
+		font-size: 16px;
+	}
     &__title {
         font-size: 15px;
         line-height: 32px;
@@ -53,6 +63,13 @@
 			line-height: 28px;
 			font-size: 12px;
 			letter-spacing: 1px;
+		}
+		&_adm {
+			line-height: 28px;
+			font-weight: 400;
+			font-size: 14px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
 		}
     }
     &__contact {

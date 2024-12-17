@@ -91,10 +91,21 @@ $(document).ready(function() {
     // });
 
     $(window).scroll(function() {
+		// if ($('!portal_active')) {
+		// 	if ($(this).scrollTop() > 600) {
+		// 		$('.header.header_alt').fadeIn();
+		// 	} else {
+		// 		$('.header_alt').fadeOut();;
+		// 	}
+		// }
         if ($(this).scrollTop() > 600) {
-            $('.header.header_alt').fadeIn();
+			if ($('.portal').css('display') == 'block') {
+				$('.header_alt').fadeOut();
+			} else {
+				$('.header_alt').fadeIn();
+			}
         } else {
-            $('.header_alt').fadeOut();;
+            $('.header_alt').fadeOut();
         }
     });
 
