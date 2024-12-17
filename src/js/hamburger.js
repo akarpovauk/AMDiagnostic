@@ -177,7 +177,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		document.querySelector('#loginSubmit>span').innerHTML = 'Sign out'
 		employees().setAttribute('style', displayStyle); 
 		employees().scrollIntoView();
-		showTable() 
+        openTable()
+		//showTable() 
         })
  
 	}

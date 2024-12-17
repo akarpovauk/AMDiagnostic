@@ -83,6 +83,8 @@
                             <div style="display:flex;">
                                 <button id="new-user-button" onclick="changePassword(this)" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">reset</button>
                                 <button id="cancel-user-button" onclick="cancelReset()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">cancel</button>
+                                <button id="cancel-user-button" onclick="deleteUser()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">Delete</button>
+
                             </div>`
                             <div  style="display: flex;">
                                 <div id="locked" class="locked-text">
@@ -90,9 +92,12 @@
                                 </div>
                                 <div>
                                     <button id="locked-button" onclick="testLocked()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">test</button>
-
+                                    
                                 </div>
-
+                                <!-- <div>
+                                    <button id="ignore-button" onclick="toggleIgnore()" style="margin-left:0px; margin-right:5px;" type="button" class="button button_table table__btn font font__title font__title_btn">hide</button>
+                                    
+                                </div> -->
                             </div>
                         </div>
 
