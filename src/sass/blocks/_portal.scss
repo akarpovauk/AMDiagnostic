@@ -1,11 +1,8 @@
 .portal {
     // display: none;
     min-height: 358px;
-    padding: 120px 0;
+    padding: 80px 0;
     background-color: $color-main-dark;
-    &_active {
-        display: block;
-    }
     &__tabs-wrapper {
         margin-top: 20px;
         display: flex;
@@ -70,7 +67,5 @@
 	}
 	&__form-button {
 		margin: 0;
-
 	}
-
 }

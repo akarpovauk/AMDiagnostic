@@ -199,6 +199,38 @@
         }
     }
 
+	.admin {
+		&-content {
+			.tab-item {
+				cursor: default;
+				&:hover {
+					color: #fff;
+					background-color: $color-admin;
+					border: 1px solid $color-main-dark;
+					&.active {
+						color: #000;
+						background-color: $color-main-dark;
+						border-color: $color-main-dark;
+					}
+				}
+			}
+		}
+	}
+	.button-adm {
+		&:hover {
+			cursor: default;
+			background-color: $color-admin;
+			&:disabled {
+				background-color: $color-gray-light;
+			}
+		}
+		&_error {
+			&:hover {
+				background-color: $color-adm_error;
+			}
+		}
+	}
+
 	.button {
 		&:hover {
 			border: none;
@@ -522,7 +554,46 @@
 		&__form-button {
 			margin-top: 15px;
 		}
+
+		.admin-content {
+			.tab-item {
+				padding: 2px 20px;
+			}
+			.search {
+				&__form {
+					flex-direction: column;
+					height: auto;
+					.search__input {
+						height: 45px;
+						margin-bottom: 15px;
+					}
+				}
+				&__btn-block {
+					height: 45px;
+				}
+				&__btn-section {
+					height: 45px;
+				}
+			}
+			.auth__inputs {
+				flex-direction: column;
+			}
+		}
+		.password {
+			&__error-block {
+				padding: 15px 5px;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 14px;
+			}
+		}
+		.button-adm {
+			height: 45px;
+			padding: 2px 8px;
+		}
     }
+
+
 
 	.button {
 		&_slim {
@@ -784,7 +855,34 @@
         &__tab {
             width: 195px;
         }
+		.admin {
+			&-content {
+				.tab {
+					&-list {
+						padding: 10px 10px;
+					}
+					&-item {
+						padding: 5px;
+						font-size: 14px;
+						line-height: 16px;
+					}
+				}
+			}
+		}
+		.password {
+			&__error-block {
+				font-size: 12px;
+			}
+		}
+		.button-adm {
+			width: 50%;
+			font-size: 12px;
+			padding: 2px 1px;
+			letter-spacing: 1px;
+
+		}
     }
+
 
     .about {
         min-height: 360px;
