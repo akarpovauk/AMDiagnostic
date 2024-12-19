@@ -6,6 +6,7 @@ let fileId = ''
 let userName = ''
 let prefix = ''
 let userToken = ''
+
 let legacyIds = ["5","13","20"]
 let backendUrl = (document.location.href.indexOf('localhost') > -1) ? 'http://localhost:8082/' : 'https://amdiagnostic.co.uk/back/';
 const template = "//td[contains(text(), '<name>')]/parent::*/td[<number>]"
@@ -207,11 +208,15 @@ const expandRegister = (el) => {
 }
 
 const expandCurrent = () => {
-    
-    document.getElementById('password-section').style = 'display: block;';
-    document.getElementById('new-section').style='display: none;';
-    document.getElementById('search-section').style='display:none';
-    document.getElementById('users-cont').innerHTML = '';
+    const parser = new DOMParser();
+    const data = sessionStorage.getItem("admin");
+    const doc = parser.parseFromString(sessionStorage.getItem("admin"), 'text/html');
+    const section = doc.querySelector("password-subsection");
+    let container = document.getElementById("users-cont");
+    container.innerHTML = data;
+    document.getElementById("password-section").classList.add("active");
+    document.getElementById("password-user").innerHTML = localStorage.getItem("userName");
+  
 }
 
 const getTableToken = () => {
@@ -358,7 +363,8 @@ const setUserProfile = (uid) => {
        debugger
         userName = data.id;
         userToken = data.token;
-        sessionStorage.setItem('userToken', data.token)
+        sessionStorage.setItem('userToken', data.token);
+        localStorage.setItem('userName', data.id);
         resolve(true);
     }) 
     })
@@ -366,12 +372,13 @@ const setUserProfile = (uid) => {
 }
 
 const setUser = (e) => {
-    showLoader()
+ showLoader()
  e.preventDefault();
  let did = getRandom(7);
- //userId = '46';
+ 
  userId = e.target.id;
- var source = backendUrl + "files/output_" + did + "_" + userId + ".pdf";
+ let source = backendUrl + "files/output_" + did + "_" + userId + ".pdf";
+
  let ucon = document.getElementById('users-cont');
  ucon.innerHTML = '';
 setUserProfile(e.target.id).then(() => {
@@ -390,7 +397,7 @@ setUserProfile(e.target.id).then(() => {
     }).then(() => {
         var disbut = document.getElementById('current-user-button');
         disbut.disabled = null;
-        disbut.className = "button button_table table__btn font font__title font__title_btn";
+    
     })
 })
 
@@ -698,7 +705,8 @@ const expandAdmin = () => {
     .then(data => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
-        const cont = doc.querySelector("form[id='admin-form']");
+        sessionStorage.setItem("admin", data);
+        const cont = doc.querySelector("section[id='admin-form']");
         document.getElementById('cont').appendChild(cont);
     })
     })

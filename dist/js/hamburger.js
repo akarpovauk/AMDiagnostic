@@ -132,9 +132,8 @@ window.addEventListener('DOMContentLoaded', () => {
            body: JSON.stringify({ email: login, password: pass})
           }).then(response => response.json())
           .then(data => {     
-     let tkn = data.token
-     console.log("USERNAME:")
-     console.log(data.id)
+            let tkn = data.token
+            
 		if (tkn !== null && tkn !== undefined && tkn.length > 10) {
              	localStorage.setItem('token', tkn)
                 loginError.classList.remove('login-form__error_active')
