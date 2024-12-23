@@ -201,9 +201,9 @@ const testLocked = () => {
 
 const expandRegister = (el) => {
     document.getElementById('auth-section').style = 'display: block;';
-    document.getElementById('new-section').style='display: none;';
-    document.getElementById('search-section').style='display:none';
-    document.getElementById('users-cont').innerHTML = '';
+    // document.getElementById('new-section').style='display: none;';
+    // document.getElementById('search-section').style='display:none';
+    // document.getElementById('users-cont').innerHTML = '';
     
 }
 
@@ -276,9 +276,9 @@ const register = () => {
 }
 
 const cancelRegister = () => {
-    document.getElementById('search-section').style='display: flex';
-    document.getElementById('new-section').style='display: block;';
-    document.getElementById('auth-section').style = 'display: none;';
+    document.getElementById('auth-section').removeAttribute("style");
+    // document.getElementById('new-section').style='display: block;';
+    // document.getElementById('auth-section').style = 'display: none;';
 }
 
 const cancelReset = () => {
