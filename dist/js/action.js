@@ -200,10 +200,13 @@ const testLocked = () => {
 }
 
 const expandRegister = (el) => {
-    document.getElementById('auth-section').style = 'display: block;';
-    // document.getElementById('new-section').style='display: none;';
-    // document.getElementById('search-section').style='display:none';
-    // document.getElementById('users-cont').innerHTML = '';
+    if (document.getElementById('auth-section') !== null) {
+        document.getElementById('auth-section').style = 'display: block;';
+    } else {
+
+    }
+    
+ 
     
 }
 
@@ -282,9 +285,8 @@ const cancelRegister = () => {
 }
 
 const cancelReset = () => {
-    document.getElementById('search-section').style='display: flex';
-    document.getElementById('new-section').style='display: block;';
-    document.getElementById('password-section').style = 'display: none;';
+    document.getElementById('password-section').removeAttribute("style");
+    document.getElementById('password-section').classList.remove("active");
 }
 
 const getRandom = (len) => {
